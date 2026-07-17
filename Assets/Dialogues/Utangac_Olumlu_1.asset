@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
+  m_Name: Utangac_Olumlu_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "M-merhaba... Benimle mi konu\u015Fmak istedin?"
+  - portrait: {fileID: 0}
+    isLeftSide: 1
+    text: Evet, seninle. Acele etme, dinliyorum.
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "Kimse daha \xF6nce beklememi\u015Fti..."
+  isNegative: 0
+  requirements:
+  - stat: 1
+    min: 50
+    max: 100
+  - stat: 2
+    min: 0
+    max: 50
+  answerA:
+    answerText: "Sessizli\u011Fin de bir dili var."
+    effects:
+    - stat: 1
+      amount: 10
+  answerB:
+    answerText: "Konu\u015Fmazsan kimse seni duymaz ama."
+    effects:
+    - stat: 0
+      amount: 5
+    - stat: 1
+      amount: -5

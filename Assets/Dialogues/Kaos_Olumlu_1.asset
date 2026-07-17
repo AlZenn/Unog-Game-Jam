@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
+  m_Name: Kaos_Olumlu_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "Sen de mi her \u015Feyin y\u0131k\u0131lmas\u0131n\u0131 izliyorsun?"
+  - portrait: {fileID: 0}
+    isLeftSide: 1
+    text: "Bazen y\u0131k\u0131m, yeniden kurman\u0131n tek yolu."
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "Demek anl\u0131yorsun... \u0130\xE7indeki ate\u015Fi hissediyorum."
+  isNegative: 0
+  requirements:
+  - stat: 0
+    min: 55
+    max: 100
+  - stat: 2
+    min: 0
+    max: 45
+  answerA:
+    answerText: "\xD6fkeni anl\u0131yorum, birlikte yakal\u0131m."
+    effects:
+    - stat: 0
+      amount: 10
+  answerB:
+    answerText: "Ama \xF6nce nefes al, sakinle\u015F."
+    effects:
+    - stat: 0
+      amount: -10
+    - stat: 1
+      amount: 5

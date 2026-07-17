@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
+  m_Name: Acgozlu_Olumlu_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "Sende bir \u015Fey var... Bana ne kazand\u0131rabilirsin?"
+  - portrait: {fileID: 0}
+    isLeftSide: 1
+    text: "Her \u015Feyin bir bedeli olmak zorunda m\u0131?"
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "Heh... Pazarl\u0131k etmeyi biliyorsun. Ho\u015Fuma gitti."
+  isNegative: 0
+  requirements:
+  - stat: 2
+    min: 60
+    max: 100
+  - stat: 1
+    min: 0
+    max: 45
+  answerA:
+    answerText: "Kazan-kazan, ortak olal\u0131m."
+    effects:
+    - stat: 2
+      amount: 10
+  answerB:
+    answerText: "Baz\u0131 \u015Feyler sat\u0131l\u0131k de\u011Fildir."
+    effects:
+    - stat: 2
+      amount: -10
+    - stat: 1
+      amount: 10

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
+  m_Name: Haz_Olumlu_1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  lines:
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "Hayat k\u0131sa. Neden her an\u0131n tad\u0131n\u0131 \xE7\u0131karmayal\u0131m?"
+  - portrait: {fileID: 0}
+    isLeftSide: 1
+    text: "Tad\u0131n\u0131 \xE7\u0131karmakla ka\xE7mak aras\u0131nda ince bir \xE7izgi
+      var."
+  - portrait: {fileID: 0}
+    isLeftSide: 0
+    text: "Hmm... Sen ilgin\xE7 birisin. Devam et."
+  isNegative: 0
+  requirements:
+  - stat: 2
+    min: 50
+    max: 100
+  answerA:
+    answerText: "An\u0131 ya\u015Fa, yar\u0131n\u0131 d\xFC\u015F\xFCnme."
+    effects:
+    - stat: 2
+      amount: 10
+  answerB:
+    answerText: "Ger\xE7ek haz, hak edilmi\u015F oland\u0131r."
+    effects:
+    - stat: 2
+      amount: -10
+    - stat: 1
+      amount: 5
