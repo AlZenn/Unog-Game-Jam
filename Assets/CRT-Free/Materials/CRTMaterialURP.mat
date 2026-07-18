@@ -47,7 +47,7 @@ Material:
     - _CrtReflectionFalloff: 0
     - _CrtReflectionRadius: -0.087
     - _Curvature: 20
-    - _Curvature2: 0.007
+    - _Curvature2: 0.038
     - _Desaturation: 0
     - _DitherScreenScale: 1
     - _MaxColorsBlue: 0
@@ -55,7 +55,7 @@ Material:
     - _MaxColorsRed: 0
     - _Spread: 0
     - _Spread8: 0
-    - _VigSize: 0.345
+    - _VigSize: 0.292
     m_Colors:
     - _BorderTint: {r: 0.121796034, g: 0.12775578, b: 0.16037738, a: 1}
     - _ColorScans: {r: -0.355, g: -0.334, b: 3.06, a: 2}

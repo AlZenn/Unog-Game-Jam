@@ -37,6 +37,8 @@ Shader "Hidden/CRTUnlitURP"
         _Spread  ("DitherSpread4", Range(0,1)) = 0.5
         _Spread8 ("DitherSpread8", Range(0,1)) = 0.5
         _DitherScreenScale("DitherScreenScale", Range(0.5,2)) = 1
+        
+        _UseBlitTexture   ("Use Blit Texture", Float) = 0.0
     }
 
     SubShader
@@ -49,14 +51,15 @@ Shader "Hidden/CRTUnlitURP"
             Name "CRT_URP"
 
             HLSLPROGRAM
-            #pragma vertex   Vert
+            #pragma vertex   vert
             #pragma fragment frag
+            
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
-            #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
-            // ---- Tekstürler ----
-            // URP Blit.hlsl defines _BlitTexture and sampler_LinearClamp already.
-            TEXTURE2D(_BorderTex); SAMPLER(sampler_BorderTex);
+            // ---- Tekstür Tanımlamaları ----
+            TEXTURE2D(_BlitTexture); SAMPLER(sampler_BlitTexture);
+            TEXTURE2D(_MainTex);     SAMPLER(sampler_MainTex);
+            TEXTURE2D(_BorderTex);   SAMPLER(sampler_BorderTex);
 
             float4 _BorderTex_ST;
             float4 _BorderTint;
@@ -73,10 +76,36 @@ Shader "Hidden/CRTUnlitURP"
             float _CrtReflectionCurve, _CrtReflectionRadius, _CrtReflectionFalloff, _CrtGlowAmount;
             float _BorderInnerDarkerAmount;
             float _Spread, _Spread8, _DitherScreenScale;
+            float _UseBlitTexture;
 
             // ---- Dithering ----
-            uniform int _BrewedInk_Bayer4[16];
-            uniform int _BrewedInk_Bayer8[64];
+            uniform float _BrewedInk_Bayer4[16];
+            uniform float _BrewedInk_Bayer8[64];
+
+            // ---- Vertex Shader Yapısı ----
+            struct Attributes
+            {
+                uint vertexID : SV_VertexID;
+            };
+
+            struct Varyings
+            {
+                float4 positionCS : SV_POSITION;
+                float2 uv         : TEXCOORD0;
+            };
+
+            // Full-screen triangle vertex shader (Universal URP uyumlu)
+            Varyings vert(Attributes input)
+            {
+                Varyings output;
+                float2 uv = float2((input.vertexID << 1) & 2, input.vertexID & 2);
+                output.positionCS = float4(uv * 2.0 - 1.0, 0.0, 1.0);
+                #if UNITY_UV_STARTS_AT_TOP
+                output.positionCS.y = -output.positionCS.y;
+                #endif
+                output.uv = uv;
+                return output;
+            }
 
             // ---- Yardımcı Fonksiyonlar ----
             float roundBox(float2 p, float2 b, float r)
@@ -125,9 +154,18 @@ Shader "Hidden/CRTUnlitURP"
                 int y8 = (int)(screenUv.y * _ScreenParams.y * _DitherScreenScale) % n8;
                 float m8 = (_BrewedInk_Bayer8[y8 * n8 + x8] * 1.0 / (n8 * n8)) - 0.5;
 
-                // URP Blitter uses _BlitTexture and SAMPLE_TEXTURE2D_X
-                float4 col = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_LinearClamp, warpedUv)
-                             + m4 * _Spread + m8 * _Spread8;
+                // _UseBlitTexture parametresine göre doğru tekstürü oku
+                float4 col;
+                if (_UseBlitTexture > 0.5)
+                {
+                    col = SAMPLE_TEXTURE2D(_BlitTexture, sampler_BlitTexture, warpedUv);
+                }
+                else
+                {
+                    col = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, warpedUv);
+                }
+
+                col.rgb += m4 * _Spread + m8 * _Spread8;
 
                 col.r = _MaxColorsRed   <= 0 ? col.r : floor(col.r * (_MaxColorsRed   - 1) + 0.5) / (_MaxColorsRed   - 1);
                 col.g = _MaxColorsGreen <= 0 ? col.g : floor(col.g * (_MaxColorsGreen - 1) + 0.5) / (_MaxColorsGreen - 1);
@@ -148,16 +186,15 @@ Shader "Hidden/CRTUnlitURP"
                 float vigSize      = lerp(0, 500, _VigSize);
                 float2 v           = float2(vigSize / _ScreenParams.x, vigSize / _ScreenParams.y);
                 float2 vig         = smoothstep(float2(0,0), v, invertAbsUv);
-                col *= vig.x * vig.y;
-                col  = clamp(col, 0, 1);
+                col.rgb *= vig.x * vig.y;
+                col.rgb  = clamp(col.rgb, 0, 1);
                 return col;
             }
 
             // ---- Fragment Shader ----
             float4 frag(Varyings IN) : SV_Target
             {
-                // Blit.hlsl defines Varyings with 'texcoord' instead of 'uv'
-                float2 uvInput = IN.texcoord;
+                float2 uvInput = IN.uv;
                 float2 p = uvInput * 2.0 - 1.0;
                 p *= _BorderZoom;
                 p += p * dot(p, p) * _Curvature2;

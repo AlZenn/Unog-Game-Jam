@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 52321149}
   - component: {fileID: 52321148}
   - component: {fileID: 52321147}
+  - component: {fileID: 52321150}
   m_Layer: 0
   m_Name: AnswerA
   m_TagString: Untagged
@@ -419,6 +420,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52321145}
   m_CullTransparentMesh: 1
+--- !u!114 &52321150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52321145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36495f81b662d5b4a935a617008dd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverFeel
+  scaleAmount: 0.05
+  animSpeed: 10
+  useOutline: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineDistance: {x: 4, y: 4}
+  outlineTarget: {fileID: 0}
 --- !u!1 &73554371
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +525,8 @@ GameObject:
   - component: {fileID: 129191040}
   - component: {fileID: 129191039}
   - component: {fileID: 129191038}
+  - component: {fileID: 129191042}
+  - component: {fileID: 129191041}
   m_Layer: 0
   m_Name: Haz
   m_TagString: Untagged
@@ -654,6 +675,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &129191041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129191036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d93cfba0c78d9c4a956033beadaf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverHighlight
+  scaleAmount: 0.05
+  animSpeed: 10
+  outline: {fileID: 129191042}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &129191042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129191036}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OutlineFx::OutlineFx.OutlineFx
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &133686003
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,6 +1022,8 @@ GameObject:
   - component: {fileID: 247850271}
   - component: {fileID: 247850270}
   - component: {fileID: 247850269}
+  - component: {fileID: 247850273}
+  - component: {fileID: 247850272}
   m_Layer: 0
   m_Name: Heyecan
   m_TagString: Untagged
@@ -1120,6 +1172,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &247850272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247850267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d93cfba0c78d9c4a956033beadaf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverHighlight
+  scaleAmount: 0.05
+  animSpeed: 10
+  outline: {fileID: 247850273}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &247850273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247850267}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OutlineFx::OutlineFx.OutlineFx
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &270504082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,9 +1363,9 @@ MonoBehaviour:
       greyScale: 0
     dithering4: 0
     dithering8: 0
-    vignette: 0.345
+    vignette: 0.292
     innerCurve: 20
-    monitorCurve: 0.007
+    monitorCurve: 0.038
     monitorInnerSize:
       width: 0
       height: 0
@@ -1576,6 +1657,7 @@ GameObject:
   - component: {fileID: 463412480}
   - component: {fileID: 463412482}
   - component: {fileID: 463412481}
+  - component: {fileID: 463412483}
   m_Layer: 0
   m_Name: Slider_Ofke
   m_TagString: Untagged
@@ -1677,6 +1759,24 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &463412483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463412479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36495f81b662d5b4a935a617008dd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverFeel
+  scaleAmount: 0.05
+  animSpeed: 10
+  useOutline: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineDistance: {x: 4, y: 4}
+  outlineTarget: {fileID: 0}
 --- !u!1 &467982630
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2155,8 @@ GameObject:
   - component: {fileID: 655587078}
   - component: {fileID: 655587077}
   - component: {fileID: 655587076}
+  - component: {fileID: 655587080}
+  - component: {fileID: 655587079}
   m_Layer: 0
   m_Name: Utangac
   m_TagString: Untagged
@@ -2203,6 +2305,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &655587079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655587074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d93cfba0c78d9c4a956033beadaf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverHighlight
+  scaleAmount: 0.05
+  animSpeed: 10
+  outline: {fileID: 655587080}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &655587080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655587074}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OutlineFx::OutlineFx.OutlineFx
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &657036166
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,6 +3150,8 @@ GameObject:
   - component: {fileID: 953389537}
   - component: {fileID: 953389536}
   - component: {fileID: 953389535}
+  - component: {fileID: 953389539}
+  - component: {fileID: 953389538}
   m_Layer: 0
   m_Name: Acgozlu
   m_TagString: Untagged
@@ -3167,6 +3300,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &953389538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953389533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d93cfba0c78d9c4a956033beadaf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverHighlight
+  scaleAmount: 0.05
+  animSpeed: 10
+  outline: {fileID: 953389539}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &953389539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953389533}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OutlineFx::OutlineFx.OutlineFx
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &979242137
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,6 +3481,8 @@ GameObject:
   - component: {fileID: 1013910200}
   - component: {fileID: 1013910199}
   - component: {fileID: 1013910198}
+  - component: {fileID: 1013910202}
+  - component: {fileID: 1013910201}
   m_Layer: 0
   m_Name: Kaos
   m_TagString: Untagged
@@ -3467,6 +3631,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1013910201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013910196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d93cfba0c78d9c4a956033beadaf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverHighlight
+  scaleAmount: 0.05
+  animSpeed: 10
+  outline: {fileID: 1013910202}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1013910202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013910196}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OutlineFx::OutlineFx.OutlineFx
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1032220611
 GameObject:
   m_ObjectHideFlags: 0
@@ -3730,6 +3923,7 @@ GameObject:
   - component: {fileID: 1081737470}
   - component: {fileID: 1081737469}
   - component: {fileID: 1081737468}
+  - component: {fileID: 1081737472}
   m_Layer: 0
   m_Name: QuitButton
   m_TagString: Untagged
@@ -3839,6 +4033,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -90}
   m_SizeDelta: {x: 320, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1081737472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081737467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36495f81b662d5b4a935a617008dd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverFeel
+  scaleAmount: 0.05
+  animSpeed: 10
+  useOutline: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineDistance: {x: 4, y: 4}
+  outlineTarget: {fileID: 0}
 --- !u!1 &1094414696
 GameObject:
   m_ObjectHideFlags: 0
@@ -4001,6 +4213,8 @@ GameObject:
   - component: {fileID: 1196236919}
   - component: {fileID: 1196236918}
   - component: {fileID: 1196236917}
+  - component: {fileID: 1196236921}
+  - component: {fileID: 1196236920}
   m_Layer: 0
   m_Name: ExitDoor
   m_TagString: Untagged
@@ -4141,6 +4355,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1196236920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196236915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d93cfba0c78d9c4a956033beadaf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverHighlight
+  scaleAmount: 0.05
+  animSpeed: 10
+  outline: {fileID: 1196236921}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1196236921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1196236915}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OutlineFx::OutlineFx.OutlineFx
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1200259655
 GameObject:
   m_ObjectHideFlags: 0
@@ -4232,6 +4475,8 @@ GameObject:
   - component: {fileID: 1242046934}
   - component: {fileID: 1242046933}
   - component: {fileID: 1242046932}
+  - component: {fileID: 1242046936}
+  - component: {fileID: 1242046935}
   m_Layer: 0
   m_Name: Merhamet
   m_TagString: Untagged
@@ -4380,6 +4625,35 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1242046935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242046930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d93cfba0c78d9c4a956033beadaf6a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoverHighlight
+  scaleAmount: 0.05
+  animSpeed: 10
+  outline: {fileID: 1242046936}
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1242046936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242046930}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4218d78ef2d54d0898b7514e121a781f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OutlineFx::OutlineFx.OutlineFx
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1254235347
 GameObject:
   m_ObjectHideFlags: 0
@@ -4466,6 +4740,7 @@ GameObject:
   - component: {fileID: 1324016154}
   - component: {fileID: 1324016156}
   - component: {fileID: 1324016155}
+  - component: {fileID: 1324016157}
   m_Layer: 0
   m_Name: Slider_Cikar
   m_TagString: Untagged
@@ -4567,6 +4842,24 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1324016157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324016153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36495f81b662d5b4a935a617008dd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverFeel
+  scaleAmount: 0.05
+  animSpeed: 10
+  useOutline: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineDistance: {x: 4, y: 4}
+  outlineTarget: {fileID: 0}
 --- !u!1 &1341453775
 GameObject:
   m_ObjectHideFlags: 0
@@ -4737,6 +5030,7 @@ GameObject:
   - component: {fileID: 1444021275}
   - component: {fileID: 1444021274}
   - component: {fileID: 1444021273}
+  - component: {fileID: 1444021276}
   m_Layer: 0
   m_Name: AnswerB
   m_TagString: Untagged
@@ -4846,6 +5140,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444021271}
   m_CullTransparentMesh: 1
+--- !u!114 &1444021276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444021271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36495f81b662d5b4a935a617008dd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverFeel
+  scaleAmount: 0.05
+  animSpeed: 10
+  useOutline: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineDistance: {x: 4, y: 4}
+  outlineTarget: {fileID: 0}
 --- !u!1 &1452597845
 GameObject:
   m_ObjectHideFlags: 0
@@ -5023,7 +5335,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1455422088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5799,6 +6111,7 @@ GameObject:
   - component: {fileID: 1850221558}
   - component: {fileID: 1850221557}
   - component: {fileID: 1850221559}
+  - component: {fileID: 1850221560}
   m_Layer: 0
   m_Name: PlayButton
   m_TagString: Untagged
@@ -5908,6 +6221,24 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1850221560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850221555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36495f81b662d5b4a935a617008dd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverFeel
+  scaleAmount: 0.05
+  animSpeed: 10
+  useOutline: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineDistance: {x: 4, y: 4}
+  outlineTarget: {fileID: 0}
 --- !u!21 &1867915808
 Material:
   serializedVersion: 8
@@ -6700,6 +7031,7 @@ GameObject:
   - component: {fileID: 2079025826}
   - component: {fileID: 2079025828}
   - component: {fileID: 2079025827}
+  - component: {fileID: 2079025829}
   m_Layer: 0
   m_Name: Slider_Durustluk
   m_TagString: Untagged
@@ -6801,6 +7133,24 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2079025829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079025825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36495f81b662d5b4a935a617008dd7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHoverFeel
+  scaleAmount: 0.05
+  animSpeed: 10
+  useOutline: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineDistance: {x: 4, y: 4}
+  outlineTarget: {fileID: 0}
 --- !u!1 &2094314197
 GameObject:
   m_ObjectHideFlags: 0
@@ -6985,7 +7335,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: UNOG
+  m_Text: "C\u0130C\u0130KUS"
 --- !u!222 &2116393756
 CanvasRenderer:
   m_ObjectHideFlags: 0

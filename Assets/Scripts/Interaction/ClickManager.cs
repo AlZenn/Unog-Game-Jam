@@ -13,25 +13,42 @@ public class ClickManager : MonoBehaviour
 {
     public Camera worldCamera;
 
+    HoverHighlight currentHover;
+
     void Update()
     {
         var gm = GameManager.Instance;
-        if (gm == null || gm.State != GameState.Exploring) return;
-
         var mouse = Mouse.current;
-        if (mouse == null || !mouse.leftButton.wasPressedThisFrame) return;
-
-        // UI üzerine tıklanıyorsa (sliderlar vb.) dünyaya tıklama sayma.
-        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
+        if (gm == null || gm.State != GameState.Exploring || mouse == null)
+        {
+            SetHover(null);
+            return;
+        }
 
         if (worldCamera == null) worldCamera = Camera.main;
-        if (worldCamera == null) return;
+        if (worldCamera == null) { SetHover(null); return; }
 
-        Vector2 world = worldCamera.ScreenToWorldPoint(mouse.position.ReadValue());
-        var hit = Physics2D.OverlapPoint(world);
-        if (hit == null) return;
+        // UI üzerindeyken (sliderlar, menü vb.) dünya hover/tıklaması yok sayılır.
+        bool overUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
 
-        var clickable = hit.GetComponentInParent<IClickable>();
-        clickable?.OnClicked();
+        Collider2D hit = null;
+        if (!overUI)
+        {
+            Vector2 world = worldCamera.ScreenToWorldPoint(mouse.position.ReadValue());
+            hit = Physics2D.OverlapPoint(world);
+        }
+
+        SetHover(hit != null ? hit.GetComponentInParent<HoverHighlight>() : null);
+
+        if (!overUI && hit != null && mouse.leftButton.wasPressedThisFrame)
+            hit.GetComponentInParent<IClickable>()?.OnClicked();
+    }
+
+    void SetHover(HoverHighlight next)
+    {
+        if (currentHover == next) return;
+        if (currentHover != null) currentHover.SetHovered(false);
+        currentHover = next;
+        if (currentHover != null) currentHover.SetHovered(true);
     }
 }
