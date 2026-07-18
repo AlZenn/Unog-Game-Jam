@@ -692,6 +692,11 @@ MonoBehaviour:
   outline: {fileID: 129191042}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   label: {fileID: 0}
+  breatheEnabled: 1
+  breatheAmount: 0.02
+  breatheSpeed: 2
+  punchAmount: 0.15
+  punchDuration: 0.25
 --- !u!114 &129191042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1190,6 +1195,11 @@ MonoBehaviour:
   outline: {fileID: 247850273}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   label: {fileID: 0}
+  breatheEnabled: 1
+  breatheAmount: 0.02
+  breatheSpeed: 2
+  punchAmount: 0.15
+  punchDuration: 0.25
 --- !u!114 &247850273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1216,6 +1226,7 @@ GameObject:
   - component: {fileID: 270504084}
   - component: {fileID: 270504086}
   - component: {fileID: 270504087}
+  - component: {fileID: 270504088}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1320,7 +1331,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -1386,6 +1397,20 @@ MonoBehaviour:
       sizeMultiplier: 3.06
     innerMonitorShineRadius: -0.087
     innerMonitorShineCurve: 10
+--- !u!114 &270504088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270504082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aad54216da161344a97ed694b9d67d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+  defaultDuration: 0.3
+  defaultMagnitude: 0.15
 --- !u!1 &309198854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1710,6 +1735,10 @@ MonoBehaviour:
   valueLabel: {fileID: 133686005}
   bottomLockZone: {fileID: 1753343422}
   topLockZone: {fileID: 821972454}
+  punchScale: 1.35
+  punchDuration: 0.25
+  lockFlashColor: {r: 0.9, g: 0.15, b: 0.15, a: 0.85}
+  lockFlashDuration: 0.5
 --- !u!114 &463412482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2324,6 +2353,11 @@ MonoBehaviour:
   outline: {fileID: 655587080}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   label: {fileID: 0}
+  breatheEnabled: 1
+  breatheAmount: 0.02
+  breatheSpeed: 2
+  punchAmount: 0.15
+  punchDuration: 0.25
 --- !u!114 &655587080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3320,6 +3354,11 @@ MonoBehaviour:
   outline: {fileID: 953389539}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   label: {fileID: 0}
+  breatheEnabled: 1
+  breatheAmount: 0.02
+  breatheSpeed: 2
+  punchAmount: 0.15
+  punchDuration: 0.25
 --- !u!114 &953389539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3652,6 +3691,11 @@ MonoBehaviour:
   outline: {fileID: 1013910202}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   label: {fileID: 0}
+  breatheEnabled: 1
+  breatheAmount: 0.02
+  breatheSpeed: 2
+  punchAmount: 0.15
+  punchDuration: 0.25
 --- !u!114 &1013910202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3679,6 +3723,9 @@ GameObject:
   - component: {fileID: 1032220614}
   - component: {fileID: 1032220613}
   - component: {fileID: 1032220612}
+  - component: {fileID: 1032220620}
+  - component: {fileID: 1032220619}
+  - component: {fileID: 1032220618}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3722,6 +3769,10 @@ MonoBehaviour:
   answerButtonB: {fileID: 1444021273}
   answerTextA: {fileID: 309198856}
   answerTextB: {fileID: 1912569197}
+  panelSlideDuration: 0.25
+  buttonPopDuration: 0.2
+  buttonPopStagger: 0.08
+  portraitPopDuration: 0.15
 --- !u!114 &1032220614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3801,6 +3852,136 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1032220618
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032220611}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1032220619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032220611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94820ccbc59c3c94c9253fdcf7ed5d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueAudio
+  volume: 0.35
+  basePitch: 1
+  pitchVariance: 0.12
+  blipFrequency: 620
+--- !u!114 &1032220620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032220611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6d765c1569ae842be71c97fe1d2481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TensionVignette
+  baseIntensity: 0.15
+  maxExtraIntensity: 0.35
+  lerpSpeed: 2
+  calmColor: {r: 0, g: 0, b: 0, a: 1}
+  tenseColor: {r: 0.35, g: 0, b: 0, a: 1}
 --- !u!1 &1049055621
 GameObject:
   m_ObjectHideFlags: 0
@@ -4377,6 +4558,11 @@ MonoBehaviour:
   outline: {fileID: 1196236921}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   label: {fileID: 0}
+  breatheEnabled: 1
+  breatheAmount: 0.02
+  breatheSpeed: 2
+  punchAmount: 0.15
+  punchDuration: 0.25
 --- !u!114 &1196236921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4648,6 +4834,11 @@ MonoBehaviour:
   outline: {fileID: 1242046936}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
   label: {fileID: 0}
+  breatheEnabled: 1
+  breatheAmount: 0.02
+  breatheSpeed: 2
+  punchAmount: 0.15
+  punchDuration: 0.25
 --- !u!114 &1242046936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4798,6 +4989,10 @@ MonoBehaviour:
   valueLabel: {fileID: 1051078599}
   bottomLockZone: {fileID: 1944694866}
   topLockZone: {fileID: 326892185}
+  punchScale: 1.35
+  punchDuration: 0.25
+  lockFlashColor: {r: 0.9, g: 0.15, b: 0.15, a: 0.85}
+  lockFlashDuration: 0.5
 --- !u!114 &1324016156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6945,6 +7140,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2072938715}
   - component: {fileID: 2072938716}
+  - component: {fileID: 2072938717}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7027,6 +7223,20 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2072938717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072938714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1488e3ff00ad6418f2ae73e3038566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IdleBreathe
+  amount: 0.02
+  speed: 2
 --- !u!1 &2079025825
 GameObject:
   m_ObjectHideFlags: 0
@@ -7089,6 +7299,10 @@ MonoBehaviour:
   valueLabel: {fileID: 1413507743}
   bottomLockZone: {fileID: 467982631}
   topLockZone: {fileID: 1254235348}
+  punchScale: 1.35
+  punchDuration: 0.25
+  lockFlashColor: {r: 0.9, g: 0.15, b: 0.15, a: 0.85}
+  lockFlashDuration: 0.5
 --- !u!114 &2079025828
 MonoBehaviour:
   m_ObjectHideFlags: 0

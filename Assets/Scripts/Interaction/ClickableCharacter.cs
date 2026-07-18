@@ -25,6 +25,9 @@ public class ClickableCharacter : MonoBehaviour, IClickable
         var gm = GameManager.Instance;
         if (gm == null || gm.State != GameState.Exploring) return;
 
+        var hover = GetComponent<HoverHighlight>();
+        if (hover != null) hover.TriggerClickPunch();
+
         var next = NextPositiveDialogue;
         if (next != null && next.MeetsRequirements(gm.stats))
             gm.PlayDialogue(next, this);

@@ -8,6 +8,10 @@ public class ExitDoor : MonoBehaviour, IClickable
     {
         var gm = GameManager.Instance;
         if (gm == null || gm.State != GameState.Exploring) return;
+
+        var hover = GetComponent<HoverHighlight>();
+        if (hover != null) hover.TriggerClickPunch();
+
         gm.PlayDialogue(gm.doorDialogue, null);
     }
 }

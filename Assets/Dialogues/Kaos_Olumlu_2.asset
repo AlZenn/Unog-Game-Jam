@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Kaos_Olumlu_2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - portrait: {fileID: 0}
+  - portrait: {fileID: -1856009930, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
     isLeftSide: 0
     text: "Ate\u015F s\xF6nmeye ba\u015Flad\u0131... \u0130\xE7im garip bir \u015Fekilde
       hafif."
-  - portrait: {fileID: 0}
+  - portrait: {fileID: 1186422308, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
     isLeftSide: 1
     text: Belki kaos da dinlenmeyi hak ediyordur.
   isNegative: 0

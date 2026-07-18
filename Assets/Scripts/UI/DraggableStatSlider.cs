@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 // Dikey stat slider'ı: mouse ile basılı tutup sürükleyerek değiştirilir (uGUI Slider'ın
 // kendi drag davranışı), ancak değer StatManager'ın daralan min/max sınırlarına clamp'lenir.
 // Kilitli bölgeler koyu overlay ile gösterilir. Diyalog sırasında slider kilitlenir.
+// Feel: cevap etkisiyle değer değişince value yazısı punch yapar; aralık daralınca
+// ilgili kilit bölgesi kırmızı flaş verir.
 public class DraggableStatSlider : MonoBehaviour
 {
     public StatType statType;
@@ -12,13 +15,31 @@ public class DraggableStatSlider : MonoBehaviour
     public RectTransform bottomLockZone;
     public RectTransform topLockZone;
 
+    [Header("Feel")]
+    public float punchScale = 1.35f;
+    public float punchDuration = 0.25f;
+    public Color lockFlashColor = new Color(0.9f, 0.15f, 0.15f, 0.85f);
+    public float lockFlashDuration = 0.5f;
+
     bool syncing;
+    bool selfChange;
+    float lastMinLimit = -1f;
+    float lastMaxLimit = -1f;
+    Image bottomLockImage;
+    Image topLockImage;
+    Color lockBaseColor = new Color(0f, 0f, 0f, 0.6f);
+    Coroutine punchRoutine;
+    Coroutine bottomFlashRoutine;
+    Coroutine topFlashRoutine;
 
     StatManager Stats => GameManager.Instance != null ? GameManager.Instance.stats : null;
 
     void Awake()
     {
         if (slider == null) slider = GetComponent<Slider>();
+        if (bottomLockZone != null) bottomLockImage = bottomLockZone.GetComponent<Image>();
+        if (topLockZone != null) topLockImage = topLockZone.GetComponent<Image>();
+        if (bottomLockImage != null) lockBaseColor = bottomLockImage.color;
     }
 
     void Start()
@@ -31,7 +52,10 @@ public class DraggableStatSlider : MonoBehaviour
         slider.onValueChanged.AddListener(OnSliderChanged);
         stats.OnStatsChanged += Refresh;
         GameManager.Instance.OnStateChanged += OnGameStateChanged;
+
         Refresh();
+        lastMinLimit = stats.GetMinLimit(statType);
+        lastMaxLimit = stats.GetMaxLimit(statType);
     }
 
     void OnDestroy()
@@ -58,7 +82,11 @@ public class DraggableStatSlider : MonoBehaviour
             slider.value = clamped;
             syncing = false;
         }
+
+        selfChange = true;
         stats.SetValue(statType, clamped);
+        selfChange = false;
+
         UpdateLabel(clamped);
     }
 
@@ -67,12 +95,31 @@ public class DraggableStatSlider : MonoBehaviour
         var stats = Stats;
         if (stats == null) return;
 
+        float newValue = stats.GetValue(statType);
+        bool valueChanged = !Mathf.Approximately(slider.value, newValue);
+
         syncing = true;
-        slider.value = stats.GetValue(statType);
+        slider.value = newValue;
         syncing = false;
 
-        UpdateLabel(slider.value);
+        UpdateLabel(newValue);
         UpdateLockZones(stats);
+
+        // Dışarıdan (cevap etkisi) gelen değer değişiminde punch.
+        if (!selfChange && valueChanged) PunchValueLabel();
+
+        // Aralık daraldıysa ilgili kilit bölgesi flaş verir.
+        float newMin = stats.GetMinLimit(statType);
+        float newMax = stats.GetMaxLimit(statType);
+        if (lastMinLimit >= 0f && isActiveAndEnabled)
+        {
+            if (newMin > lastMinLimit + 0.01f)
+                bottomFlashRoutine = RestartFlash(bottomFlashRoutine, bottomLockImage);
+            if (newMax < lastMaxLimit - 0.01f)
+                topFlashRoutine = RestartFlash(topFlashRoutine, topLockImage);
+        }
+        lastMinLimit = newMin;
+        lastMaxLimit = newMax;
     }
 
     void UpdateLabel(float value)
@@ -98,5 +145,47 @@ public class DraggableStatSlider : MonoBehaviour
             topLockZone.offsetMin = Vector2.zero;
             topLockZone.offsetMax = Vector2.zero;
         }
+    }
+
+    // ---------------------------------------------------------------- feel
+
+    void PunchValueLabel()
+    {
+        if (valueLabel == null || !isActiveAndEnabled) return;
+        if (punchRoutine != null) StopCoroutine(punchRoutine);
+        punchRoutine = StartCoroutine(PunchRoutine(valueLabel.transform));
+    }
+
+    IEnumerator PunchRoutine(Transform target)
+    {
+        float t = 0f;
+        while (t < punchDuration)
+        {
+            t += Time.deltaTime;
+            float p = Mathf.Clamp01(t / punchDuration);
+            target.localScale = Vector3.one * Mathf.Lerp(punchScale, 1f, 1f - Mathf.Pow(1f - p, 2f));
+            yield return null;
+        }
+        target.localScale = Vector3.one;
+    }
+
+    Coroutine RestartFlash(Coroutine current, Image image)
+    {
+        if (image == null) return null;
+        if (current != null) StopCoroutine(current);
+        return StartCoroutine(FlashRoutine(image));
+    }
+
+    IEnumerator FlashRoutine(Image image)
+    {
+        float t = 0f;
+        while (t < lockFlashDuration)
+        {
+            t += Time.deltaTime;
+            float p = Mathf.Clamp01(t / lockFlashDuration);
+            image.color = Color.Lerp(lockFlashColor, lockBaseColor, p);
+            yield return null;
+        }
+        image.color = lockBaseColor;
     }
 }

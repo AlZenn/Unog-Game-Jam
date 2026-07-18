@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Kaos_Olumlu_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   lines:
-  - portrait: {fileID: 0}
+  - portrait: {fileID: -1856009930, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
     isLeftSide: 0
     text: "Sen de mi her \u015Feyin y\u0131k\u0131lmas\u0131n\u0131 izliyorsun?"
-  - portrait: {fileID: 0}
+  - portrait: {fileID: -2136666803, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
     isLeftSide: 1
     text: "Bazen y\u0131k\u0131m, yeniden kurman\u0131n tek yolu."
-  - portrait: {fileID: 0}
+  - portrait: {fileID: 54098592, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
     isLeftSide: 0
     text: "Demek anl\u0131yorsun... \u0130\xE7indeki ate\u015Fi hissediyorum."
   isNegative: 0
