@@ -109,8 +109,22 @@ public class DialogueEditorWindow : EditorWindow
 
         EditorGUILayout.PropertyField(serialized.FindProperty("isNegative"),
             new GUIContent("Olumsuz Havuz Diyaloğu"));
+
+        var isNegativeNow = serialized.FindProperty("isNegative").boolValue;
+        if (!isNegativeNow)
+        {
+            EditorGUILayout.PropertyField(serialized.FindProperty("speaker"),
+                new GUIContent("Karakter (sol portre)"));
+        }
+        else
+        {
+            EditorGUILayout.HelpBox(
+                "Olumsuzlarda karakter seçilmez: tıklanan karakterin portresi kullanılır.",
+                MessageType.None);
+        }
+
         EditorGUILayout.PropertyField(serialized.FindProperty("lines"),
-            new GUIContent("Satırlar (foto / sağ-sol / metin)"), true);
+            new GUIContent("Satırlar (sol=karakter / sağ=ana karakter)"), true);
 
         var isNegative = serialized.FindProperty("isNegative").boolValue;
         if (!isNegative)

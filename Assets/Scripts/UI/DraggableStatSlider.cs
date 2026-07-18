@@ -56,6 +56,9 @@ public class DraggableStatSlider : MonoBehaviour
         Refresh();
         lastMinLimit = stats.GetMinLimit(statType);
         lastMaxLimit = stats.GetMaxLimit(statType);
+
+        // Alt etiket: stat'ın zıttı yazılır (slider'ın alt ucu bu özelliği temsil eder).
+        if (valueLabel != null) valueLabel.text = OppositeName(statType);
     }
 
     void OnDestroy()
@@ -122,9 +125,19 @@ public class DraggableStatSlider : MonoBehaviour
         lastMaxLimit = newMax;
     }
 
-    void UpdateLabel(float value)
+    // Alt etiket sayı değil, stat'ın zıttını gösterir — değer değişiminde metin değişmez
+    // (punch animasyonu yine oynar).
+    void UpdateLabel(float value) { }
+
+    static string OppositeName(StatType stat)
     {
-        if (valueLabel != null) valueLabel.text = Mathf.RoundToInt(value).ToString();
+        switch (stat)
+        {
+            case StatType.Ofke: return "SAKİNLİK";
+            case StatType.Durustluk: return "İKİYÜZLÜLÜK";
+            case StatType.Cikar: return "FEDAKARLIK";
+            default: return "";
+        }
     }
 
     // Kilitli bölgeler: alt overlay [0, minLimit], üst overlay [maxLimit, max].

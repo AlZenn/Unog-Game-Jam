@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Merhamet_Olumlu_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 2
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Herkes ac\u0131 \xE7ekiyor ama kimse g\xF6rm\xFCyor..."
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "Ben g\xF6r\xFCyorum. Anlatmak ister misin?"
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Kalbin temizmi\u015F. Sana g\xFCvenebilirim san\u0131r\u0131m."
   isNegative: 0
   requirements:

@@ -39,6 +39,13 @@ public static class FeelSetupTool
             var audioSource = go.GetComponent<AudioSource>();
             if (audioSource == null) audioSource = go.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;
+
+            // Arka plan müziği: adında music/bgm/müzik/theme geçen klibi otomatik bağla.
+            var music = go.GetComponent<BackgroundMusic>();
+            if (music == null) music = go.AddComponent<BackgroundMusic>();
+            if (music.musicClip == null)
+                music.musicClip = FindClipByKeywords("music", "bgm", "muzik", "müzik", "theme", "soundtrack");
+
             EditorUtility.SetDirty(go);
         }
         else
@@ -62,6 +69,20 @@ public static class FeelSetupTool
         AssetDatabase.SaveAssets();
         EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         Debug.Log("UnoG: Feel efektleri kuruldu (shake, vignette, blip sesi, nefes, toz).");
+    }
+
+    static AudioClip FindClipByKeywords(params string[] keywords)
+    {
+        foreach (var guid in AssetDatabase.FindAssets("t:AudioClip"))
+        {
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            if (path.StartsWith("Packages/")) continue;
+            string name = System.IO.Path.GetFileNameWithoutExtension(path).ToLowerInvariant();
+            foreach (var keyword in keywords)
+                if (name.Contains(keyword))
+                    return AssetDatabase.LoadAssetAtPath<AudioClip>(path);
+        }
+        return null;
     }
 
     // ---------------------------------------------------------------- toz

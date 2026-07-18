@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Acgozlu_Olumlu_2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 6
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Toplad\u0131\u011F\u0131m her \u015Fey... bir g\xFCn elimden kayarsa diye
       uyuyam\u0131yorum."
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "Sahip olduklar\u0131n\u0131n sana sahip olmas\u0131na izin verme."
   isNegative: 0
   requirements:

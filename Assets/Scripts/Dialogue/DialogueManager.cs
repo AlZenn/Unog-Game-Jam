@@ -61,6 +61,18 @@ public class DialogueManager : MonoBehaviour
         lastPortrait = null;
         dialogueText.text = "";
 
+        // Önceki diyaloğun fotoğrafı panel girerken görünmesin: ilk satırın
+        // portresi slide başlamadan ayarlanır (pop animasyonuyla birlikte gelir).
+        if (data.lines.Count > 0)
+        {
+            ShowPortrait(data.lines[0], data, source);
+        }
+        else
+        {
+            portraitLeft.gameObject.SetActive(false);
+            portraitRight.gameObject.SetActive(false);
+        }
+
         yield return SlidePanel(true);
 
         int letterIndex = 0;
@@ -72,7 +84,7 @@ public class DialogueManager : MonoBehaviour
 
         foreach (var line in data.lines)
         {
-            ShowPortrait(line);
+            ShowPortrait(line, data, source);
             yield return TypewriterEffect.Play(dialogueText, line.text, gm.letterDelay, onLetter);
             // Oyuncu okuyabilsin diye bekleme (GameManager'dan ayarlanır).
             yield return new WaitForSeconds(gm.sentenceWaitTime);
@@ -161,9 +173,14 @@ public class DialogueManager : MonoBehaviour
         target.localScale = Vector3.one;
     }
 
-    void ShowPortrait(DialogueLine line)
+    // Sol = diyaloğun karakterinin portresi, sağ = ana karakterin portresi.
+    // Olumsuz diyaloglarda tıklanan karakterin (source) portresi kullanılır —
+    // asset'te atamaya gerek yoktur.
+    void ShowPortrait(DialogueLine line, DialogueData data, ClickableCharacter source)
     {
-        bool hasPortrait = line.portrait != null;
+        Sprite sprite = ResolvePortrait(line, data, source);
+        bool hasPortrait = sprite != null;
+
         portraitLeft.gameObject.SetActive(hasPortrait && line.isLeftSide);
         portraitRight.gameObject.SetActive(hasPortrait && !line.isLeftSide);
         if (!hasPortrait)
@@ -173,11 +190,23 @@ public class DialogueManager : MonoBehaviour
         }
 
         var img = line.isLeftSide ? portraitLeft : portraitRight;
-        img.sprite = line.portrait;
-        if (line.portrait != lastPortrait || line.isLeftSide != lastSide)
+        img.sprite = sprite;
+        if (sprite != lastPortrait || line.isLeftSide != lastSide)
             StartCoroutine(PortraitPop(img));
-        lastPortrait = line.portrait;
+        lastPortrait = sprite;
         lastSide = line.isLeftSide;
+    }
+
+    Sprite ResolvePortrait(DialogueLine line, DialogueData data, ClickableCharacter source)
+    {
+        var pm = PortraitManager.Instance;
+        if (pm == null) return null;
+
+        if (!line.isLeftSide) return pm.mainCharacterSprite;
+
+        // Sol taraf: olumsuzlarda tıklanan karakter, diğerlerinde asset'teki speaker.
+        var speaker = data.isNegative && source != null ? source.characterId : data.speaker;
+        return pm.GetPortrait(speaker);
     }
 
     IEnumerator PortraitPop(Image img)

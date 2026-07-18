@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Utangac_Olumlu_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 3
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "M-merhaba... Benimle mi konu\u015Fmak istedin?"
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: Evet, seninle. Acele etme, dinliyorum.
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Kimse daha \xF6nce beklememi\u015Fti..."
   isNegative: 0
   requirements:

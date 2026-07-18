@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Olumsuz_3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 0
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "...Git ba\u015F\u0131mdan."
   isNegative: 1
   requirements: []

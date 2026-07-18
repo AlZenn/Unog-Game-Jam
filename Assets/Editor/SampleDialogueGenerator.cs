@@ -2,8 +2,12 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-// Örnek DialogueData asset'lerini üretir: karakter başına 2 olumlu, 6 olumsuz havuz, 1 kapı.
-// Var olan asset'lerin üzerine yazmaz — kullanıcı düzenlemeleri korunur.
+// Örnek DialogueData asset'lerini üretir/günceller: karakter başına 2 olumlu,
+// 6 olumsuz havuz, 1 kapı. Portre sistemi: sprite atanmaz — her diyaloğun
+// speaker'ı seçilir; sol satırlar NPC'nin, sağ satırlar ana karakterin
+// portresiyle (PortraitManager'dan) gösterilir.
+// NOT: Var olan örnek asset'lerin içeriği de bu şablona göre GÜNCELLENİR
+// (elle yapılmış düzenlemelerin üzerine yazar).
 public static class SampleDialogueGenerator
 {
     public const string DialogueFolder = "Assets/Dialogues";
@@ -16,12 +20,12 @@ public static class SampleDialogueGenerator
         public DialogueData door;
     }
 
-    [MenuItem("Tools/UnoG/Örnek Diyalogları Üret", priority = 20)]
+    [MenuItem("Tools/UnoG/Örnek Diyalogları Üret-Güncelle", priority = 20)]
     public static void GenerateMenuItem()
     {
         EnsureAll();
         AssetDatabase.SaveAssets();
-        Debug.Log("UnoG: Örnek diyaloglar hazır → " + DialogueFolder);
+        Debug.Log("UnoG: Örnek diyaloglar yeni portre sistemine göre güncellendi → " + DialogueFolder);
     }
 
     public static DialogueLibrary EnsureAll()
@@ -29,26 +33,31 @@ public static class SampleDialogueGenerator
         EnsureFolder();
         var lib = new DialogueLibrary();
 
+        // Satır konvansiyonu: (true, ...) = NPC konuşur (sol portre),
+        //                     (false, ...) = ana karakter konuşur (sağ portre).
+
         // ---- Kaos (özel stat: Öfke) ----
         lib.positivesByCharacter["Kaos"] = new List<DialogueData>
         {
-            CreateOrLoad("Kaos_Olumlu_1", d =>
+            CreateOrUpdate("Kaos_Olumlu_1", d =>
             {
+                d.speaker = SpeakerCharacter.Kaos;
                 AddLines(d,
-                    (false, "Sen de mi her şeyin yıkılmasını izliyorsun?"),
-                    (true,  "Bazen yıkım, yeniden kurmanın tek yolu."),
-                    (false, "Demek anlıyorsun... İçindeki ateşi hissediyorum."));
+                    (true,  "Sen de mi her şeyin yıkılmasını izliyorsun?"),
+                    (false, "Bazen yıkım, yeniden kurmanın tek yolu."),
+                    (true,  "Demek anlıyorsun... İçindeki ateşi hissediyorum."));
                 Require(d, StatType.Ofke, 55, 100);
                 Require(d, StatType.Cikar, 0, 45);
                 Answers(d,
                     "Öfkeni anlıyorum, birlikte yakalım.", E(StatType.Ofke, 10),
                     "Ama önce nefes al, sakinleş.", E(StatType.Ofke, -10), E(StatType.Durustluk, 5));
             }),
-            CreateOrLoad("Kaos_Olumlu_2", d =>
+            CreateOrUpdate("Kaos_Olumlu_2", d =>
             {
+                d.speaker = SpeakerCharacter.Kaos;
                 AddLines(d,
-                    (false, "Ateş sönmeye başladı... İçim garip bir şekilde hafif."),
-                    (true,  "Belki kaos da dinlenmeyi hak ediyordur."));
+                    (true,  "Ateş sönmeye başladı... İçim garip bir şekilde hafif."),
+                    (false, "Belki kaos da dinlenmeyi hak ediyordur."));
                 Require(d, StatType.Ofke, 65, 100);
                 Answers(d,
                     "Yıkmadan da var olabilirsin.", E(StatType.Ofke, -10),
@@ -59,23 +68,25 @@ public static class SampleDialogueGenerator
         // ---- Merhamet (özel stat: Dürüstlük) ----
         lib.positivesByCharacter["Merhamet"] = new List<DialogueData>
         {
-            CreateOrLoad("Merhamet_Olumlu_1", d =>
+            CreateOrUpdate("Merhamet_Olumlu_1", d =>
             {
+                d.speaker = SpeakerCharacter.Merhamet;
                 AddLines(d,
-                    (false, "Herkes acı çekiyor ama kimse görmüyor..."),
-                    (true,  "Ben görüyorum. Anlatmak ister misin?"),
-                    (false, "Kalbin temizmiş. Sana güvenebilirim sanırım."));
+                    (true,  "Herkes acı çekiyor ama kimse görmüyor..."),
+                    (false, "Ben görüyorum. Anlatmak ister misin?"),
+                    (true,  "Kalbin temizmiş. Sana güvenebilirim sanırım."));
                 Require(d, StatType.Durustluk, 55, 100);
                 Require(d, StatType.Ofke, 0, 45);
                 Answers(d,
                     "Acıyı paylaşmak yükü hafifletir.", E(StatType.Durustluk, 10),
                     "Herkesi kurtaramazsın, önce kendine bak.", E(StatType.Cikar, 10), E(StatType.Durustluk, -5));
             }),
-            CreateOrLoad("Merhamet_Olumlu_2", d =>
+            CreateOrUpdate("Merhamet_Olumlu_2", d =>
             {
+                d.speaker = SpeakerCharacter.Merhamet;
                 AddLines(d,
-                    (false, "Sana bir sır vereceğim... Ben de yardım istemekten korkuyorum."),
-                    (true,  "Yardım istemek zayıflık değil."));
+                    (true,  "Sana bir sır vereceğim... Ben de yardım istemekten korkuyorum."),
+                    (false, "Yardım istemek zayıflık değil."));
                 Require(d, StatType.Durustluk, 60, 100);
                 Answers(d,
                     "Sana her zaman yardım ederim.", E(StatType.Durustluk, 5), E(StatType.Ofke, -5),
@@ -86,23 +97,25 @@ public static class SampleDialogueGenerator
         // ---- Utangaç (özel stat: Dürüstlük) ----
         lib.positivesByCharacter["Utangac"] = new List<DialogueData>
         {
-            CreateOrLoad("Utangac_Olumlu_1", d =>
+            CreateOrUpdate("Utangac_Olumlu_1", d =>
             {
+                d.speaker = SpeakerCharacter.Utangac;
                 AddLines(d,
-                    (false, "M-merhaba... Benimle mi konuşmak istedin?"),
-                    (true,  "Evet, seninle. Acele etme, dinliyorum."),
-                    (false, "Kimse daha önce beklememişti..."));
+                    (true,  "M-merhaba... Benimle mi konuşmak istedin?"),
+                    (false, "Evet, seninle. Acele etme, dinliyorum."),
+                    (true,  "Kimse daha önce beklememişti..."));
                 Require(d, StatType.Durustluk, 50, 100);
                 Require(d, StatType.Cikar, 0, 50);
                 Answers(d,
                     "Sessizliğin de bir dili var.", E(StatType.Durustluk, 10),
                     "Konuşmazsan kimse seni duymaz ama.", E(StatType.Ofke, 5), E(StatType.Durustluk, -5));
             }),
-            CreateOrLoad("Utangac_Olumlu_2", d =>
+            CreateOrUpdate("Utangac_Olumlu_2", d =>
             {
+                d.speaker = SpeakerCharacter.Utangac;
                 AddLines(d,
-                    (false, "Bugün... bugün sana kendim gelmek istedim."),
-                    (true,  "Bu büyük bir adım, farkında mısın?"));
+                    (true,  "Bugün... bugün sana kendim gelmek istedim."),
+                    (false, "Bu büyük bir adım, farkında mısın?"));
                 Require(d, StatType.Durustluk, 55, 100);
                 Require(d, StatType.Ofke, 0, 50);
                 Answers(d,
@@ -114,22 +127,24 @@ public static class SampleDialogueGenerator
         // ---- Heyecan (özel stat: Öfke) ----
         lib.positivesByCharacter["Heyecan"] = new List<DialogueData>
         {
-            CreateOrLoad("Heyecan_Olumlu_1", d =>
+            CreateOrUpdate("Heyecan_Olumlu_1", d =>
             {
+                d.speaker = SpeakerCharacter.Heyecan;
                 AddLines(d,
-                    (false, "Bugün her şey olabilir! Hissediyor musun?!"),
-                    (true,  "Enerjin bulaşıcı, itiraf edeyim."),
-                    (false, "İşte böyle biriyle konuşmak istiyordum!"));
+                    (true,  "Bugün her şey olabilir! Hissediyor musun?!"),
+                    (false, "Enerjin bulaşıcı, itiraf edeyim."),
+                    (true,  "İşte böyle biriyle konuşmak istiyordum!"));
                 Require(d, StatType.Ofke, 35, 80);
                 Answers(d,
                     "Hadi bir şeyler yapalım, hemen!", E(StatType.Ofke, 10),
                     "Enerjini biriktir, doğru an gelecek.", E(StatType.Ofke, -5), E(StatType.Cikar, 5));
             }),
-            CreateOrLoad("Heyecan_Olumlu_2", d =>
+            CreateOrUpdate("Heyecan_Olumlu_2", d =>
             {
+                d.speaker = SpeakerCharacter.Heyecan;
                 AddLines(d,
-                    (false, "Ya bazen bu heyecan beni yoruyor..."),
-                    (true,  "Durup dinlenmek de maceranın parçası."));
+                    (true,  "Ya bazen bu heyecan beni yoruyor..."),
+                    (false, "Durup dinlenmek de maceranın parçası."));
                 Require(d, StatType.Ofke, 30, 70);
                 Require(d, StatType.Durustluk, 40, 100);
                 Answers(d,
@@ -141,22 +156,24 @@ public static class SampleDialogueGenerator
         // ---- Haz (özel stat: Çıkar) ----
         lib.positivesByCharacter["Haz"] = new List<DialogueData>
         {
-            CreateOrLoad("Haz_Olumlu_1", d =>
+            CreateOrUpdate("Haz_Olumlu_1", d =>
             {
+                d.speaker = SpeakerCharacter.Haz;
                 AddLines(d,
-                    (false, "Hayat kısa. Neden her anın tadını çıkarmayalım?"),
-                    (true,  "Tadını çıkarmakla kaçmak arasında ince bir çizgi var."),
-                    (false, "Hmm... Sen ilginç birisin. Devam et."));
+                    (true,  "Hayat kısa. Neden her anın tadını çıkarmayalım?"),
+                    (false, "Tadını çıkarmakla kaçmak arasında ince bir çizgi var."),
+                    (true,  "Hmm... Sen ilginç birisin. Devam et."));
                 Require(d, StatType.Cikar, 50, 100);
                 Answers(d,
                     "Anı yaşa, yarını düşünme.", E(StatType.Cikar, 10),
                     "Gerçek haz, hak edilmiş olandır.", E(StatType.Cikar, -10), E(StatType.Durustluk, 5));
             }),
-            CreateOrLoad("Haz_Olumlu_2", d =>
+            CreateOrUpdate("Haz_Olumlu_2", d =>
             {
+                d.speaker = SpeakerCharacter.Haz;
                 AddLines(d,
-                    (false, "İtiraf edeyim... hiçbir şey artık eskisi kadar tatmin etmiyor."),
-                    (true,  "Belki aradığın şey dışarıda değildir."));
+                    (true,  "İtiraf edeyim... hiçbir şey artık eskisi kadar tatmin etmiyor."),
+                    (false, "Belki aradığın şey dışarıda değildir."));
                 Require(d, StatType.Cikar, 45, 90);
                 Require(d, StatType.Durustluk, 35, 100);
                 Answers(d,
@@ -168,23 +185,25 @@ public static class SampleDialogueGenerator
         // ---- Açgözlü (özel stat: Çıkar) ----
         lib.positivesByCharacter["Acgozlu"] = new List<DialogueData>
         {
-            CreateOrLoad("Acgozlu_Olumlu_1", d =>
+            CreateOrUpdate("Acgozlu_Olumlu_1", d =>
             {
+                d.speaker = SpeakerCharacter.Acgozlu;
                 AddLines(d,
-                    (false, "Sende bir şey var... Bana ne kazandırabilirsin?"),
-                    (true,  "Her şeyin bir bedeli olmak zorunda mı?"),
-                    (false, "Heh... Pazarlık etmeyi biliyorsun. Hoşuma gitti."));
+                    (true,  "Sende bir şey var... Bana ne kazandırabilirsin?"),
+                    (false, "Her şeyin bir bedeli olmak zorunda mı?"),
+                    (true,  "Heh... Pazarlık etmeyi biliyorsun. Hoşuma gitti."));
                 Require(d, StatType.Cikar, 60, 100);
                 Require(d, StatType.Durustluk, 0, 45);
                 Answers(d,
                     "Kazan-kazan, ortak olalım.", E(StatType.Cikar, 10),
                     "Bazı şeyler satılık değildir.", E(StatType.Cikar, -10), E(StatType.Durustluk, 10));
             }),
-            CreateOrLoad("Acgozlu_Olumlu_2", d =>
+            CreateOrUpdate("Acgozlu_Olumlu_2", d =>
             {
+                d.speaker = SpeakerCharacter.Acgozlu;
                 AddLines(d,
-                    (false, "Topladığım her şey... bir gün elimden kayarsa diye uyuyamıyorum."),
-                    (true,  "Sahip olduklarının sana sahip olmasına izin verme."));
+                    (true,  "Topladığım her şey... bir gün elimden kayarsa diye uyuyamıyorum."),
+                    (false, "Sahip olduklarının sana sahip olmasına izin verme."));
                 Require(d, StatType.Cikar, 55, 100);
                 Answers(d,
                     "Vermeyi denedin mi hiç?", E(StatType.Cikar, -10), E(StatType.Durustluk, 5),
@@ -193,6 +212,7 @@ public static class SampleDialogueGenerator
         };
 
         // ---- Olumsuz havuz (koşulsuz, cevapsız, etkisiz) ----
+        // speaker atanmaz: tıklanan karakterin portresi runtime'da kullanılır.
         string[] negativeLines =
         {
             "Seninle konuşacak havamda değilim.",
@@ -205,20 +225,22 @@ public static class SampleDialogueGenerator
         for (int i = 0; i < negativeLines.Length; i++)
         {
             string text = negativeLines[i];
-            lib.negatives.Add(CreateOrLoad("Olumsuz_" + (i + 1), d =>
+            lib.negatives.Add(CreateOrUpdate("Olumsuz_" + (i + 1), d =>
             {
                 d.isNegative = true;
-                AddLines(d, (false, text));
+                d.speaker = SpeakerCharacter.None;
+                AddLines(d, (true, text)); // NPC konuşur → tıklanan karakterin portresi
             }));
         }
 
-        // ---- Kapı ----
-        lib.door = CreateOrLoad("Kapi_Kilitli", d =>
+        // ---- Kapı: ana karakterin iç sesi → sağ portre ----
+        lib.door = CreateOrUpdate("Kapi_Kilitli", d =>
         {
             d.isNegative = true;
+            d.speaker = SpeakerCharacter.None;
             AddLines(d,
-                (true, "Kapı kilitli..."),
-                (true, "Önce diğer karakterlerle konuşmalısın."));
+                (false, "Kapı kilitli..."),
+                (false, "Önce diğer karakterlerle konuşmalısın."));
         });
 
         return lib;
@@ -232,15 +254,25 @@ public static class SampleDialogueGenerator
             AssetDatabase.CreateFolder("Assets", "Dialogues");
     }
 
-    static DialogueData CreateOrLoad(string assetName, System.Action<DialogueData> configure)
+    // Asset yoksa oluşturur; varsa içeriğini bu şablona göre sıfırlayıp yeniden kurar.
+    static DialogueData CreateOrUpdate(string assetName, System.Action<DialogueData> configure)
     {
         string path = DialogueFolder + "/" + assetName + ".asset";
-        var existing = AssetDatabase.LoadAssetAtPath<DialogueData>(path);
-        if (existing != null) return existing;
+        var data = AssetDatabase.LoadAssetAtPath<DialogueData>(path);
+        bool isNew = data == null;
 
-        var data = ScriptableObject.CreateInstance<DialogueData>();
+        if (isNew) data = ScriptableObject.CreateInstance<DialogueData>();
+
+        data.speaker = SpeakerCharacter.None;
+        data.isNegative = false;
+        data.lines.Clear();
+        data.requirements.Clear();
+        data.answerA = new DialogueAnswer();
+        data.answerB = new DialogueAnswer();
         configure(data);
-        AssetDatabase.CreateAsset(data, path);
+
+        if (isNew) AssetDatabase.CreateAsset(data, path);
+        else EditorUtility.SetDirty(data);
         return data;
     }
 

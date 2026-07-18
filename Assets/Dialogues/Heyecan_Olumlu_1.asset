@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Heyecan_Olumlu_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 4
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Bug\xFCn her \u015Fey olabilir! Hissediyor musun?!"
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "Enerjin bula\u015F\u0131c\u0131, itiraf edeyim."
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "\u0130\u015Fte b\xF6yle biriyle konu\u015Fmak istiyordum!"
   isNegative: 0
   requirements:

@@ -35,6 +35,9 @@ public class MainMenuController : MonoBehaviour
         playButton.interactable = false;
         quitButton.interactable = false;
 
+        // Arka plan müziği Play'e basılınca başlar (loop, fade-in'li).
+        if (BackgroundMusic.Instance != null) BackgroundMusic.Instance.Play();
+
         menuFadeImage.gameObject.SetActive(true);
         yield return Fade(0f, 1f);
 

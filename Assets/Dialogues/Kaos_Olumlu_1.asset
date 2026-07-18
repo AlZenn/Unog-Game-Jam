@@ -12,15 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Kaos_Olumlu_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 1
   lines:
-  - portrait: {fileID: -1856009930, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Sen de mi her \u015Feyin y\u0131k\u0131lmas\u0131n\u0131 izliyorsun?"
-  - portrait: {fileID: -2136666803, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "Bazen y\u0131k\u0131m, yeniden kurman\u0131n tek yolu."
-  - portrait: {fileID: 54098592, guid: 900a9e6e6260cc84e8e280b5eb4ef35b, type: 3}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Demek anl\u0131yorsun... \u0130\xE7indeki ate\u015Fi hissediyorum."
   isNegative: 0
   requirements:

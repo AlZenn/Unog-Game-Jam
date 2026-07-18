@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Kapi_Kilitli
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 0
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "Kap\u0131 kilitli..."
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "\xD6nce di\u011Fer karakterlerle konu\u015Fmal\u0131s\u0131n."
   isNegative: 1
   requirements: []

@@ -4,6 +4,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "YeniDiyalog", menuName = "UnoG/Diyalog", order = 0)]
 public class DialogueData : ScriptableObject
 {
+    [Header("Diyaloğun karakteri (sol portre bu karakterden gelir)")]
+    [Tooltip("Olumsuz havuz diyaloglarında önemsizdir: tıklanan karakterin portresi kullanılır.")]
+    public SpeakerCharacter speaker = SpeakerCharacter.None;
+
     [Header("Satırlar (sırayla oynar)")]
     public List<DialogueLine> lines = new List<DialogueLine>();
 

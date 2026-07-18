@@ -7,6 +7,8 @@ public class ClickableCharacter : MonoBehaviour, IClickable
 {
     [Header("Kimlik")]
     public string characterName;
+    [Tooltip("Portre çözümü için karakter kimliği (olumsuz diyaloglarda bu karakterin portresi gösterilir)")]
+    public SpeakerCharacter characterId;
     public StatType specialStat;
 
     [Header("Özel değer (her olumlu diyalogda azalır)")]

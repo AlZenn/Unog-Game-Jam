@@ -12,16 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Haz_Olumlu_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 5
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Hayat k\u0131sa. Neden her an\u0131n tad\u0131n\u0131 \xE7\u0131karmayal\u0131m?"
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "Tad\u0131n\u0131 \xE7\u0131karmakla ka\xE7mak aras\u0131nda ince bir \xE7izgi
       var."
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "Hmm... Sen ilgin\xE7 birisin. Devam et."
   isNegative: 0
   requirements:

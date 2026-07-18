@@ -2,12 +2,25 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Tek bir diyalog satırı: konuşan foto, sağ/sol toggle, metin.
+// Diyalogların ait olduğu karakter. Portreler PortraitManager'dan çözülür.
+public enum SpeakerCharacter
+{
+    None,      // konuşmacısız (örn. kapı) — portre gösterilmez
+    Kaos,
+    Merhamet,
+    Utangac,
+    Heyecan,
+    Haz,
+    Acgozlu
+}
+
+// Tek bir diyalog satırı. Portre referansı YOKTUR:
+// sol = diyaloğun karakterinin portresi, sağ = ana karakterin portresi
+// (sprite'lar PortraitManager'dan gelir).
 [Serializable]
 public class DialogueLine
 {
-    public Sprite portrait;
-    [Tooltip("Açık: portre solda gösterilir. Kapalı: sağda.")]
+    [Tooltip("Açık: karakterin portresi solda. Kapalı: ana karakterin portresi sağda.")]
     public bool isLeftSide = true;
     [TextArea(2, 5)] public string text;
 }

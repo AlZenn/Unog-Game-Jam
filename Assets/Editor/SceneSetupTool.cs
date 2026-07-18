@@ -19,18 +19,19 @@ public static class SceneSetupTool
     {
         public string objName;
         public string displayName;
+        public SpeakerCharacter id;
         public StatType stat;
         public Color color;
     }
 
     static readonly NpcDef[] Npcs =
     {
-        new NpcDef { objName = "Kaos",     displayName = "Kaos",     stat = StatType.Ofke,      color = new Color(0.85f, 0.20f, 0.20f) },
-        new NpcDef { objName = "Merhamet", displayName = "Merhamet", stat = StatType.Durustluk, color = new Color(0.95f, 0.55f, 0.75f) },
-        new NpcDef { objName = "Utangac",  displayName = "Utangaç",  stat = StatType.Durustluk, color = new Color(0.55f, 0.60f, 0.90f) },
-        new NpcDef { objName = "Heyecan",  displayName = "Heyecan",  stat = StatType.Ofke,      color = new Color(0.95f, 0.70f, 0.20f) },
-        new NpcDef { objName = "Haz",      displayName = "Haz",      stat = StatType.Cikar,     color = new Color(0.70f, 0.35f, 0.85f) },
-        new NpcDef { objName = "Acgozlu",  displayName = "Açgözlü",  stat = StatType.Cikar,     color = new Color(0.30f, 0.75f, 0.35f) },
+        new NpcDef { objName = "Kaos",     displayName = "Kaos",     id = SpeakerCharacter.Kaos,     stat = StatType.Ofke,      color = new Color(0.85f, 0.20f, 0.20f) },
+        new NpcDef { objName = "Merhamet", displayName = "Merhamet", id = SpeakerCharacter.Merhamet, stat = StatType.Durustluk, color = new Color(0.95f, 0.55f, 0.75f) },
+        new NpcDef { objName = "Utangac",  displayName = "Utangaç",  id = SpeakerCharacter.Utangac,  stat = StatType.Durustluk, color = new Color(0.55f, 0.60f, 0.90f) },
+        new NpcDef { objName = "Heyecan",  displayName = "Heyecan",  id = SpeakerCharacter.Heyecan,  stat = StatType.Ofke,      color = new Color(0.95f, 0.70f, 0.20f) },
+        new NpcDef { objName = "Haz",      displayName = "Haz",      id = SpeakerCharacter.Haz,      stat = StatType.Cikar,     color = new Color(0.70f, 0.35f, 0.85f) },
+        new NpcDef { objName = "Acgozlu",  displayName = "Açgözlü",  id = SpeakerCharacter.Acgozlu,  stat = StatType.Cikar,     color = new Color(0.30f, 0.75f, 0.35f) },
     };
 
     static readonly (StatType stat, string label)[] SliderDefs =
@@ -120,6 +121,7 @@ public static class SceneSetupTool
         var clickManager = managers.AddComponent<ClickManager>();
         var dialogueManager = managers.AddComponent<DialogueManager>();
         var endController = managers.AddComponent<GameEndController>();
+        managers.AddComponent<PortraitManager>(); // portre sprite'ları buraya atanır
         clickManager.worldCamera = cam;
 
         // Dünya objeleri
@@ -138,6 +140,7 @@ public static class SceneSetupTool
 
             var character = npcGo.AddComponent<ClickableCharacter>();
             character.characterName = Npcs[i].displayName;
+            character.characterId = Npcs[i].id;
             character.specialStat = Npcs[i].stat;
             character.specialValue = 100f;
             character.specialDecreasePerDialogue = 10f;
@@ -290,13 +293,13 @@ public static class SceneSetupTool
             titleRt.anchoredPosition = new Vector2(0f, 14f);
             titleRt.sizeDelta = new Vector2(160f, 30f);
 
-            var value = CreateUIText(rt, "Value", "50", 22, FontStyle.Normal);
+            var value = CreateUIText(rt, "Value", "", 18, FontStyle.Bold);
             var valueRt = (RectTransform)value.transform;
             valueRt.anchorMin = new Vector2(0.5f, 0f);
             valueRt.anchorMax = new Vector2(0.5f, 0f);
             valueRt.pivot = new Vector2(0.5f, 1f);
             valueRt.anchoredPosition = new Vector2(0f, -14f);
-            valueRt.sizeDelta = new Vector2(120f, 30f);
+            valueRt.sizeDelta = new Vector2(170f, 30f);
 
             var statSlider = sliderGo.AddComponent<DraggableStatSlider>();
             statSlider.statType = SliderDefs[i].stat;

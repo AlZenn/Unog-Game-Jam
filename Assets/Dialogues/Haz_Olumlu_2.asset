@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbd6e21db273ea48b4093b3081be9f8, type: 3}
   m_Name: Haz_Olumlu_2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
+  speaker: 5
   lines:
-  - portrait: {fileID: 0}
-    isLeftSide: 0
+  - isLeftSide: 1
     text: "\u0130tiraf edeyim... hi\xE7bir \u015Fey art\u0131k eskisi kadar tatmin
       etmiyor."
-  - portrait: {fileID: 0}
-    isLeftSide: 1
+  - isLeftSide: 0
     text: "Belki arad\u0131\u011F\u0131n \u015Fey d\u0131\u015Far\u0131da de\u011Fildir."
   isNegative: 0
   requirements:
