@@ -1426,6 +1426,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraShake
   defaultDuration: 0.3
   defaultMagnitude: 0.15
+  shakeClip: {fileID: 8300000, guid: f75e66b75a15a3c40a551f69f353f87f, type: 3}
+  shakeVolume: 0.8
 --- !u!1 &309198854
 GameObject:
   m_ObjectHideFlags: 0
@@ -12071,8 +12073,8 @@ Transform:
   m_GameObject: {fileID: 2072938714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
-  m_LocalScale: {x: 1.4, y: 1.9, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1887646122}
@@ -12127,7 +12129,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 5af92f6b6081cfc4aab428b6dac1933c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2618e040aa2c59842a9a6f0bf1f5b619, type: 3}
   m_Color: {r: 0.9, g: 0.9, b: 0.95, a: 1}
   m_FlipX: 0
   m_FlipY: 0
