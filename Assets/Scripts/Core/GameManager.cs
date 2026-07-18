@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public enum GameState { Exploring, InDialogue, GameOver }
 
@@ -29,6 +30,17 @@ public class GameManager : MonoBehaviour
     [Header("Kötü son")]
     [TextArea(2, 5)]
     public string endText = "Artık kimse seninle konuşmuyor.\nKapı hiç açılmadı.";
+    [Tooltip("Art arda bu kadar olumsuz cevap alınırsa (ön koşul sağlandıysa) oyun biter")]
+    public int consecutiveNegativeLimit = 4;
+    [Tooltip("Sayaç sonu için önce herkesle en az 1 olumlu diyalog yapılmış olmalı")]
+    public bool requireAllCharactersPositiveOnce = true;
+
+    [Header("Debug")]
+    [Tooltip("Bu tuşa basınca oyun anında kötü sonla biter")]
+    public bool enableDebugEndKey = true;
+    public Key debugEndKey = Key.F;
+
+    public int ConsecutiveNegativeCount { get; private set; }
 
     public GameState State { get; private set; } = GameState.Exploring;
     public event System.Action<GameState> OnStateChanged;
@@ -37,6 +49,14 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         if (stats == null) stats = GetComponent<StatManager>();
+    }
+
+    void Update()
+    {
+        if (!enableDebugEndKey || State == GameState.GameOver) return;
+        var keyboard = Keyboard.current;
+        if (keyboard != null && keyboard[debugEndKey].wasPressedThisFrame)
+            TriggerBadEnding();
     }
 
     void SetState(GameState newState)
@@ -58,6 +78,16 @@ public class GameManager : MonoBehaviour
         return negativeDialogues[Random.Range(0, negativeDialogues.Count)];
     }
 
+    // DialogueManager her diyalog bitiminde sonucu bildirir: olumlu sayaç sıfırlar,
+    // olumsuz (kapı hariç) sayacı artırır.
+    public void RegisterDialogueResult(bool wasPositive, bool countsForStreak)
+    {
+        if (wasPositive)
+            ConsecutiveNegativeCount = 0;
+        else if (countsForStreak)
+            ConsecutiveNegativeCount++;
+    }
+
     // DialogueManager diyalog kapanınca çağırır: point&click tekrar açılır, son kontrolü yapılır.
     public void OnDialogueFinished()
     {
@@ -69,10 +99,31 @@ public class GameManager : MonoBehaviour
     public void CheckGameEnd()
     {
         if (State == GameState.GameOver) return;
-        if (CanAnyPositiveDialogueOpen()) return;
 
+        // 1) Slider aralıkları hiçbir olumlu diyaloğu mümkün kılmıyorsa
+        if (!CanAnyPositiveDialogueOpen()) { TriggerBadEnding(); return; }
+
+        // 2) Sayaç sonu: (herkesle 1 olumlu yapıldıysa) art arda olumsuz limiti aşıldıysa
+        bool prerequisite = !requireAllCharactersPositiveOnce || AllCharactersTalkedPositiveOnce();
+        if (prerequisite && ConsecutiveNegativeCount >= consecutiveNegativeLimit)
+            TriggerBadEnding();
+    }
+
+    public void TriggerBadEnding()
+    {
+        if (State == GameState.GameOver) return;
         SetState(GameState.GameOver);
         if (endController != null) endController.TriggerEnd(endText);
+    }
+
+    bool AllCharactersTalkedPositiveOnce()
+    {
+        foreach (var character in characters)
+        {
+            if (character == null) continue;
+            if (character.nextDialogueIndex < 1) return false;
+        }
+        return true;
     }
 
     // Herhangi bir NPC'nin sıradaki olumlu diyaloğu, slider'ların kalan

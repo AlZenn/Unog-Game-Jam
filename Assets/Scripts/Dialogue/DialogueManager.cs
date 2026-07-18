@@ -59,6 +59,12 @@ public class DialogueManager : MonoBehaviour
             var answer = chosenAnswer == 0 ? data.answerA : data.answerB;
             gm.stats.ApplyEffects(answer.effects);
             if (source != null) source.OnPositiveDialogueCompleted();
+            gm.RegisterDialogueResult(true, true);
+        }
+        else
+        {
+            // Kapı diyaloğu source=null gelir ve art arda olumsuz sayacına sayılmaz.
+            gm.RegisterDialogueResult(false, source != null);
         }
 
         panelRoot.SetActive(false);

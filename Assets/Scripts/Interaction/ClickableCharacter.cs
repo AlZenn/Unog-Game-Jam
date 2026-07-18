@@ -29,7 +29,8 @@ public class ClickableCharacter : MonoBehaviour, IClickable
         if (next != null && next.MeetsRequirements(gm.stats))
             gm.PlayDialogue(next, this);
         else
-            gm.PlayDialogue(gm.GetRandomNegativeDialogue(), null);
+            // source geçilir ki olumsuz cevap art arda sayacına sayılsın (kapı sayılmaz).
+            gm.PlayDialogue(gm.GetRandomNegativeDialogue(), this);
     }
 
     // Olumlu diyalog bitip cevap seçildiğinde DialogueManager çağırır.
