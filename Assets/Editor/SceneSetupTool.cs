@@ -207,7 +207,7 @@ public static class SceneSetupTool
 
     // ---------------------------------------------------------------- UI
 
-    static DefaultControls.Resources GetUIResources()
+    internal static DefaultControls.Resources GetUIResources()
     {
         return new DefaultControls.Resources
         {
@@ -447,7 +447,7 @@ public static class SceneSetupTool
         endTextGo.SetActive(false);
     }
 
-    static GameObject CreateUIText(RectTransform parent, string name, string content,
+    internal static GameObject CreateUIText(RectTransform parent, string name, string content,
         int fontSize, FontStyle style)
     {
         var go = new GameObject(name, typeof(RectTransform));
