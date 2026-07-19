@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 0
   lines:
-  - text: Bana uzak dur, olur mu?
+  - text: "Benden uzakla\u015F, olur mu?"
   isNegative: 1
   requirements: []
   answerA:
