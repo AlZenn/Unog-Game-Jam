@@ -222,7 +222,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5.66, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 1013910197}
@@ -707,7 +707,6 @@ MonoBehaviour:
   animSpeed: 10
   outline: {fileID: 129191042}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  label: {fileID: 701742991}
   breatheEnabled: 1
   breatheAmount: 0.02
   breatheSpeed: 2
@@ -1211,7 +1210,6 @@ MonoBehaviour:
   animSpeed: 10
   outline: {fileID: 247850273}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  label: {fileID: 717018346}
   breatheEnabled: 1
   breatheAmount: 0.02
   breatheSpeed: 2
@@ -2417,7 +2415,6 @@ MonoBehaviour:
   animSpeed: 10
   outline: {fileID: 655587080}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  label: {fileID: 979242139}
   breatheEnabled: 1
   breatheAmount: 0.02
   breatheSpeed: 2
@@ -2722,7 +2719,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.87, y: 5.79, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 129191037}
@@ -2826,7 +2823,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.25, y: 5.85, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 953389534}
@@ -2930,7 +2927,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.64, y: 5.74, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 247850268}
@@ -3320,7 +3317,6 @@ MonoBehaviour:
   animSpeed: 10
   outline: {fileID: 823777809}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  label: {fileID: 609663204}
   breatheEnabled: 0
   breatheAmount: 0.02
   breatheSpeed: 2
@@ -3609,7 +3605,6 @@ MonoBehaviour:
   animSpeed: 10
   outline: {fileID: 953389539}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  label: {fileID: 712047194}
   breatheEnabled: 1
   breatheAmount: 0.02
   breatheSpeed: 2
@@ -3656,7 +3651,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.82, y: 5.33, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 655587075}
@@ -3864,7 +3859,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.63, y: 10.07}
+    oldSize: {x: 7.75, y: 10.21}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3921,7 +3916,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4259221629134560708, guid: 078c0cedff9dace46b99f5d447496ddc, type: 3}
+  m_Sprite: {fileID: 1182684922808960262, guid: 9b603deaad5f82d4b81d18397ca37025, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3947,7 +3942,6 @@ MonoBehaviour:
   animSpeed: 10
   outline: {fileID: 1013910202}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  label: {fileID: 16307920}
   breatheEnabled: 1
   breatheAmount: 0.02
   breatheSpeed: 2
@@ -4979,7 +4973,6 @@ MonoBehaviour:
   animSpeed: 10
   outline: {fileID: 1242046936}
   outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  label: {fileID: 1799679134}
   breatheEnabled: 1
   breatheAmount: 0.02
   breatheSpeed: 2
@@ -6137,8 +6130,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 115, y: 30}
-  m_SizeDelta: {x: 190, y: 190}
+  m_AnchoredPosition: {x: 94.390015, y: 9.7}
+  m_SizeDelta: {x: 235, y: 235}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1556934996
 MonoBehaviour:
@@ -6210,10 +6203,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1556934995}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 95, y: 0}
-  m_SizeDelta: {x: 246.43, y: 268.2}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 303.3, y: 323}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638256471
 MonoBehaviour:
@@ -11269,7 +11262,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.63, y: 5.58, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1242046931}

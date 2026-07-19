@@ -1,7 +1,8 @@
 using UnityEngine;
 
-// Dünya objeleri (NPC, kapı) için feel: hover'da outline + büyüme + isim etiketi,
+// Dünya objeleri (NPC, kapı) için feel: hover'da outline + büyüme,
 // sürekli idle nefes salınımı ve tıklamada squash & stretch punch.
+// İsim etiketi (Label child) her zaman görünürdür — bu script dokunmaz.
 // localScale'i tek yerden yazar: baseScale × hover × nefes × punch.
 public class HoverHighlight : MonoBehaviour
 {
@@ -12,8 +13,6 @@ public class HoverHighlight : MonoBehaviour
     public float animSpeed = 10f;
     public OutlineFx.OutlineFx outline;
     public Color outlineColor = Color.white;
-    [Tooltip("Hover'da görünecek isim etiketi; boşsa 'Label' adlı child aranır")]
-    public TextMesh label;
 
     [Header("Idle Nefes")]
     public bool breatheEnabled = true;
@@ -41,13 +40,6 @@ public class HoverHighlight : MonoBehaviour
             outline._color = outlineColor;
             outline.enabled = false;
         }
-
-        if (label == null)
-        {
-            var labelTransform = transform.Find("Label");
-            if (labelTransform != null) label = labelTransform.GetComponent<TextMesh>();
-        }
-        SetLabelAlpha(0f);
     }
 
     public void SetHovered(bool value)
@@ -73,7 +65,6 @@ public class HoverHighlight : MonoBehaviour
         punchTimer = -1f;
         transform.localScale = baseScale;
         if (outline != null) outline.enabled = false;
-        SetLabelAlpha(0f);
     }
 
     void Update()
@@ -102,15 +93,5 @@ public class HoverHighlight : MonoBehaviour
             baseScale.x * hoverFactor * breatheFactor * (1f + squash),
             baseScale.y * hoverFactor * breatheFactor * (1f - squash),
             baseScale.z);
-
-        SetLabelAlpha(progress);
-    }
-
-    void SetLabelAlpha(float alpha)
-    {
-        if (label == null) return;
-        Color c = label.color;
-        c.a = alpha;
-        label.color = c;
     }
 }
