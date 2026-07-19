@@ -35,7 +35,12 @@ public static class FeelSetupTool
         {
             var go = gm.gameObject;
             if (go.GetComponent<TensionVignette>() == null) go.AddComponent<TensionVignette>();
-            if (go.GetComponent<DialogueAudio>() == null) go.AddComponent<DialogueAudio>();
+
+            var dialogueAudio = go.GetComponent<DialogueAudio>();
+            if (dialogueAudio == null) dialogueAudio = go.AddComponent<DialogueAudio>();
+            // Harf sesi: adında "typew..." geçen klibi otomatik bağla (alan boşsa).
+            if (dialogueAudio.blipClip == null)
+                dialogueAudio.blipClip = FindClipByKeywords("typew", "typewriter", "daktilo");
             var audioSource = go.GetComponent<AudioSource>();
             if (audioSource == null) audioSource = go.AddComponent<AudioSource>();
             audioSource.playOnAwake = false;

@@ -1,9 +1,12 @@
 using UnityEngine;
 
-// Typewriter blip sesi — ses dosyası gerekmez, kısa dalga formu runtime üretilir.
-// Her harfte rastgele pitch ile çalınır (Undertale tarzı konuşma sesi).
+// Typewriter harf sesi. Inspector'dan bir klip atanırsa o kullanılır;
+// boş bırakılırsa kodla üretilen prosedürel blip yedek olarak devreye girer.
+// Her harfte rastgele pitch ile çalınır.
 public class DialogueAudio : MonoBehaviour
 {
+    [Tooltip("Harf sesi; boşsa kodla üretilen blip kullanılır")]
+    public AudioClip blipClip;
     [Range(0f, 1f)] public float volume = 0.35f;
     public float basePitch = 1f;
     [Tooltip("Her blip'te pitch bu kadar rastgele sapar")]
@@ -12,21 +15,22 @@ public class DialogueAudio : MonoBehaviour
     public float blipFrequency = 620f;
 
     AudioSource source;
-    AudioClip blip;
+    AudioClip proceduralBlip;
 
     void Awake()
     {
         source = GetComponent<AudioSource>();
         if (source == null) source = gameObject.AddComponent<AudioSource>();
         source.playOnAwake = false;
-        blip = CreateBlipClip();
+        if (blipClip == null) proceduralBlip = CreateBlipClip();
     }
 
     public void PlayBlip()
     {
-        if (source == null || blip == null) return;
+        var clip = blipClip != null ? blipClip : proceduralBlip;
+        if (source == null || clip == null) return;
         source.pitch = basePitch + Random.Range(-pitchVariance, pitchVariance);
-        source.PlayOneShot(blip, volume);
+        source.PlayOneShot(clip, volume);
     }
 
     // ~0.045 sn, sinüs + hafif kare karışımı, lineer sönümlü zarf.

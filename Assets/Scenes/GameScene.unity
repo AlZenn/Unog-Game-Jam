@@ -4215,6 +4215,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94820ccbc59c3c94c9253fdcf7ed5d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DialogueAudio
+  blipClip: {fileID: 8300000, guid: 12d0a0bdbf7be7945bde0d9ded4a9fe5, type: 3}
   volume: 0.35
   basePitch: 1
   pitchVariance: 0.12
