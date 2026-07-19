@@ -7770,8 +7770,8 @@ ParticleSystem:
     x:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.15
-      minScalar: -0.15
+      scalar: 0.3
+      minScalar: -0.3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7823,8 +7823,8 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.18
-      minScalar: 0.03
+      scalar: 0.36
+      minScalar: 0.06
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12650,7 +12650,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: cicikus
+  m_Text: "E\u015E\u0130K"
 --- !u!222 &2116393756
 CanvasRenderer:
   m_ObjectHideFlags: 0
