@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 6
   lines:
-  - isLeftSide: 1
-    text: "Toplad\u0131\u011F\u0131m her \u015Fey... bir g\xFCn elimden kayarsa diye
+  - text: "Toplad\u0131\u011F\u0131m her \u015Fey... bir g\xFCn elimden kayarsa diye
       uyuyam\u0131yorum."
-  - isLeftSide: 0
-    text: "Sahip olduklar\u0131n\u0131n sana sahip olmas\u0131na izin verme."
+  - text: "Sahip olduklar\u0131n\u0131n sana sahip olmas\u0131na izin verme."
   isNegative: 0
   requirements:
   - stat: 2

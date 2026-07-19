@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 0
   lines:
-  - isLeftSide: 1
-    text: Bana uzak dur, olur mu?
+  - text: Bana uzak dur, olur mu?
   isNegative: 1
   requirements: []
   answerA:

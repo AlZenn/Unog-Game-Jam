@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 3
   lines:
-  - isLeftSide: 1
-    text: "Bug\xFCn... bug\xFCn sana kendim gelmek istedim."
-  - isLeftSide: 0
-    text: "Bu b\xFCy\xFCk bir ad\u0131m, fark\u0131nda m\u0131s\u0131n?"
+  - text: "Bug\xFCn... bug\xFCn sana kendim gelmek istedim."
+  - text: "Bu b\xFCy\xFCk bir ad\u0131m, fark\u0131nda m\u0131s\u0131n?"
   isNegative: 0
   requirements:
   - stat: 1

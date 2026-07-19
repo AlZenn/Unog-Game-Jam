@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 1
   lines:
-  - isLeftSide: 1
-    text: "Sen de mi her \u015Feyin y\u0131k\u0131lmas\u0131n\u0131 izliyorsun?"
-  - isLeftSide: 0
-    text: "Bazen y\u0131k\u0131m, yeniden kurman\u0131n tek yolu."
-  - isLeftSide: 1
-    text: "Demek anl\u0131yorsun... \u0130\xE7indeki ate\u015Fi hissediyorum."
+  - text: "Sen de mi her \u015Feyin y\u0131k\u0131lmas\u0131n\u0131 izliyorsun?"
+  - text: "Bazen y\u0131k\u0131m, yeniden kurman\u0131n tek yolu."
+  - text: "Demek anl\u0131yorsun... \u0130\xE7indeki ate\u015Fi hissediyorum."
   isNegative: 0
   requirements:
   - stat: 0

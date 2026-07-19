@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 1
   lines:
-  - isLeftSide: 1
-    text: "Ate\u015F s\xF6nmeye ba\u015Flad\u0131... \u0130\xE7im garip bir \u015Fekilde
+  - text: "Ate\u015F s\xF6nmeye ba\u015Flad\u0131... \u0130\xE7im garip bir \u015Fekilde
       hafif."
-  - isLeftSide: 0
-    text: Belki kaos da dinlenmeyi hak ediyordur.
+  - text: Belki kaos da dinlenmeyi hak ediyordur.
   isNegative: 0
   requirements:
   - stat: 0

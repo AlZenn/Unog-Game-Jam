@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 0
   lines:
-  - isLeftSide: 0
-    text: "Kap\u0131 kilitli..."
-  - isLeftSide: 0
-    text: "\xD6nce di\u011Fer karakterlerle konu\u015Fmal\u0131s\u0131n."
+  - text: "Kap\u0131 kilitli..."
+  - text: "\xD6nce di\u011Fer karakterlerle konu\u015Fmal\u0131s\u0131n."
   isNegative: 1
   requirements: []
   answerA:

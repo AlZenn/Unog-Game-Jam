@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 2
   lines:
-  - isLeftSide: 1
-    text: "Sana bir s\u0131r verece\u011Fim... Ben de yard\u0131m istemekten korkuyorum."
-  - isLeftSide: 0
-    text: "Yard\u0131m istemek zay\u0131fl\u0131k de\u011Fil."
+  - text: "Sana bir s\u0131r verece\u011Fim... Ben de yard\u0131m istemekten korkuyorum."
+  - text: "Yard\u0131m istemek zay\u0131fl\u0131k de\u011Fil."
   isNegative: 0
   requirements:
   - stat: 1

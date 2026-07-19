@@ -97,6 +97,9 @@ public static class HoverSetupTool
         if (hover == null) hover = go.AddComponent<HoverHighlight>();
         hover.outline = outline;
 
+        // Kapı nefes almaz — sadece karakterler.
+        if (go.GetComponent<ExitDoor>() != null) hover.breatheEnabled = false;
+
         // İsim etiketi hover'da görünecek (normalde gizli).
         var labelTransform = go.transform.Find("Label");
         if (labelTransform != null) hover.label = labelTransform.GetComponent<TextMesh>();

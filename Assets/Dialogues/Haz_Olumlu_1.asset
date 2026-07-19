@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 5
   lines:
-  - isLeftSide: 1
-    text: "Hayat k\u0131sa. Neden her an\u0131n tad\u0131n\u0131 \xE7\u0131karmayal\u0131m?"
-  - isLeftSide: 0
-    text: "Tad\u0131n\u0131 \xE7\u0131karmakla ka\xE7mak aras\u0131nda ince bir \xE7izgi
+  - text: "Hayat k\u0131sa. Neden her an\u0131n tad\u0131n\u0131 \xE7\u0131karmayal\u0131m?"
+  - text: "Tad\u0131n\u0131 \xE7\u0131karmakla ka\xE7mak aras\u0131nda ince bir \xE7izgi
       var."
-  - isLeftSide: 1
-    text: "Hmm... Sen ilgin\xE7 birisin. Devam et."
+  - text: "Hmm... Sen ilgin\xE7 birisin. Devam et."
   isNegative: 0
   requirements:
   - stat: 2

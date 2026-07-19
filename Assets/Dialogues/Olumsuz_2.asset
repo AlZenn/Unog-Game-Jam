@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 0
   lines:
-  - isLeftSide: 1
-    text: "\u015Eu an sana ay\u0131racak vaktim yok."
+  - text: "\u015Eu an sana ay\u0131racak vaktim yok."
   isNegative: 1
   requirements: []
   answerA:

@@ -33,8 +33,7 @@ public static class SampleDialogueGenerator
         EnsureFolder();
         var lib = new DialogueLibrary();
 
-        // Satır konvansiyonu: (true, ...) = NPC konuşur (sol portre),
-        //                     (false, ...) = ana karakter konuşur (sağ portre).
+        // Satırlar düz metindir; portre her zaman solda, diyaloğun speaker'ından çözülür.
 
         // ---- Kaos (özel stat: Öfke) ----
         lib.positivesByCharacter["Kaos"] = new List<DialogueData>
@@ -43,9 +42,9 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Kaos;
                 AddLines(d,
-                    (true,  "Sen de mi her şeyin yıkılmasını izliyorsun?"),
-                    (false, "Bazen yıkım, yeniden kurmanın tek yolu."),
-                    (true,  "Demek anlıyorsun... İçindeki ateşi hissediyorum."));
+                    "Sen de mi her şeyin yıkılmasını izliyorsun?",
+                    "Bazen yıkım, yeniden kurmanın tek yolu.",
+                    "Demek anlıyorsun... İçindeki ateşi hissediyorum.");
                 Require(d, StatType.Ofke, 55, 100);
                 Require(d, StatType.Cikar, 0, 45);
                 Answers(d,
@@ -56,8 +55,8 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Kaos;
                 AddLines(d,
-                    (true,  "Ateş sönmeye başladı... İçim garip bir şekilde hafif."),
-                    (false, "Belki kaos da dinlenmeyi hak ediyordur."));
+                    "Ateş sönmeye başladı... İçim garip bir şekilde hafif.",
+                    "Belki kaos da dinlenmeyi hak ediyordur.");
                 Require(d, StatType.Ofke, 65, 100);
                 Answers(d,
                     "Yıkmadan da var olabilirsin.", E(StatType.Ofke, -10),
@@ -72,9 +71,9 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Merhamet;
                 AddLines(d,
-                    (true,  "Herkes acı çekiyor ama kimse görmüyor..."),
-                    (false, "Ben görüyorum. Anlatmak ister misin?"),
-                    (true,  "Kalbin temizmiş. Sana güvenebilirim sanırım."));
+                    "Herkes acı çekiyor ama kimse görmüyor...",
+                    "Ben görüyorum. Anlatmak ister misin?",
+                    "Kalbin temizmiş. Sana güvenebilirim sanırım.");
                 Require(d, StatType.Durustluk, 55, 100);
                 Require(d, StatType.Ofke, 0, 45);
                 Answers(d,
@@ -85,8 +84,8 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Merhamet;
                 AddLines(d,
-                    (true,  "Sana bir sır vereceğim... Ben de yardım istemekten korkuyorum."),
-                    (false, "Yardım istemek zayıflık değil."));
+                    "Sana bir sır vereceğim... Ben de yardım istemekten korkuyorum.",
+                    "Yardım istemek zayıflık değil.");
                 Require(d, StatType.Durustluk, 60, 100);
                 Answers(d,
                     "Sana her zaman yardım ederim.", E(StatType.Durustluk, 5), E(StatType.Ofke, -5),
@@ -101,9 +100,9 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Utangac;
                 AddLines(d,
-                    (true,  "M-merhaba... Benimle mi konuşmak istedin?"),
-                    (false, "Evet, seninle. Acele etme, dinliyorum."),
-                    (true,  "Kimse daha önce beklememişti..."));
+                    "M-merhaba... Benimle mi konuşmak istedin?",
+                    "Evet, seninle. Acele etme, dinliyorum.",
+                    "Kimse daha önce beklememişti...");
                 Require(d, StatType.Durustluk, 50, 100);
                 Require(d, StatType.Cikar, 0, 50);
                 Answers(d,
@@ -114,8 +113,8 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Utangac;
                 AddLines(d,
-                    (true,  "Bugün... bugün sana kendim gelmek istedim."),
-                    (false, "Bu büyük bir adım, farkında mısın?"));
+                    "Bugün... bugün sana kendim gelmek istedim.",
+                    "Bu büyük bir adım, farkında mısın?");
                 Require(d, StatType.Durustluk, 55, 100);
                 Require(d, StatType.Ofke, 0, 50);
                 Answers(d,
@@ -131,9 +130,9 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Heyecan;
                 AddLines(d,
-                    (true,  "Bugün her şey olabilir! Hissediyor musun?!"),
-                    (false, "Enerjin bulaşıcı, itiraf edeyim."),
-                    (true,  "İşte böyle biriyle konuşmak istiyordum!"));
+                    "Bugün her şey olabilir! Hissediyor musun?!",
+                    "Enerjin bulaşıcı, itiraf edeyim.",
+                    "İşte böyle biriyle konuşmak istiyordum!");
                 Require(d, StatType.Ofke, 35, 80);
                 Answers(d,
                     "Hadi bir şeyler yapalım, hemen!", E(StatType.Ofke, 10),
@@ -143,8 +142,8 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Heyecan;
                 AddLines(d,
-                    (true,  "Ya bazen bu heyecan beni yoruyor..."),
-                    (false, "Durup dinlenmek de maceranın parçası."));
+                    "Ya bazen bu heyecan beni yoruyor...",
+                    "Durup dinlenmek de maceranın parçası.");
                 Require(d, StatType.Ofke, 30, 70);
                 Require(d, StatType.Durustluk, 40, 100);
                 Answers(d,
@@ -160,9 +159,9 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Haz;
                 AddLines(d,
-                    (true,  "Hayat kısa. Neden her anın tadını çıkarmayalım?"),
-                    (false, "Tadını çıkarmakla kaçmak arasında ince bir çizgi var."),
-                    (true,  "Hmm... Sen ilginç birisin. Devam et."));
+                    "Hayat kısa. Neden her anın tadını çıkarmayalım?",
+                    "Tadını çıkarmakla kaçmak arasında ince bir çizgi var.",
+                    "Hmm... Sen ilginç birisin. Devam et.");
                 Require(d, StatType.Cikar, 50, 100);
                 Answers(d,
                     "Anı yaşa, yarını düşünme.", E(StatType.Cikar, 10),
@@ -172,8 +171,8 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Haz;
                 AddLines(d,
-                    (true,  "İtiraf edeyim... hiçbir şey artık eskisi kadar tatmin etmiyor."),
-                    (false, "Belki aradığın şey dışarıda değildir."));
+                    "İtiraf edeyim... hiçbir şey artık eskisi kadar tatmin etmiyor.",
+                    "Belki aradığın şey dışarıda değildir.");
                 Require(d, StatType.Cikar, 45, 90);
                 Require(d, StatType.Durustluk, 35, 100);
                 Answers(d,
@@ -189,9 +188,9 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Acgozlu;
                 AddLines(d,
-                    (true,  "Sende bir şey var... Bana ne kazandırabilirsin?"),
-                    (false, "Her şeyin bir bedeli olmak zorunda mı?"),
-                    (true,  "Heh... Pazarlık etmeyi biliyorsun. Hoşuma gitti."));
+                    "Sende bir şey var... Bana ne kazandırabilirsin?",
+                    "Her şeyin bir bedeli olmak zorunda mı?",
+                    "Heh... Pazarlık etmeyi biliyorsun. Hoşuma gitti.");
                 Require(d, StatType.Cikar, 60, 100);
                 Require(d, StatType.Durustluk, 0, 45);
                 Answers(d,
@@ -202,8 +201,8 @@ public static class SampleDialogueGenerator
             {
                 d.speaker = SpeakerCharacter.Acgozlu;
                 AddLines(d,
-                    (true,  "Topladığım her şey... bir gün elimden kayarsa diye uyuyamıyorum."),
-                    (false, "Sahip olduklarının sana sahip olmasına izin verme."));
+                    "Topladığım her şey... bir gün elimden kayarsa diye uyuyamıyorum.",
+                    "Sahip olduklarının sana sahip olmasına izin verme.");
                 Require(d, StatType.Cikar, 55, 100);
                 Answers(d,
                     "Vermeyi denedin mi hiç?", E(StatType.Cikar, -10), E(StatType.Durustluk, 5),
@@ -229,18 +228,18 @@ public static class SampleDialogueGenerator
             {
                 d.isNegative = true;
                 d.speaker = SpeakerCharacter.None;
-                AddLines(d, (true, text)); // NPC konuşur → tıklanan karakterin portresi
+                AddLines(d, text); // tıklanan karakterin portresi gösterilir
             }));
         }
 
-        // ---- Kapı: ana karakterin iç sesi → sağ portre ----
+        // ---- Kapı: speaker None → portre gösterilmez ----
         lib.door = CreateOrUpdate("Kapi_Kilitli", d =>
         {
             d.isNegative = true;
             d.speaker = SpeakerCharacter.None;
             AddLines(d,
-                (false, "Kapı kilitli..."),
-                (false, "Önce diğer karakterlerle konuşmalısın."));
+                "Kapı kilitli...",
+                "Önce diğer karakterlerle konuşmalısın.");
         });
 
         return lib;
@@ -276,10 +275,10 @@ public static class SampleDialogueGenerator
         return data;
     }
 
-    static void AddLines(DialogueData d, params (bool isLeft, string text)[] lines)
+    static void AddLines(DialogueData d, params string[] lines)
     {
-        foreach (var (isLeft, text) in lines)
-            d.lines.Add(new DialogueLine { isLeftSide = isLeft, text = text });
+        foreach (var text in lines)
+            d.lines.Add(new DialogueLine { text = text });
     }
 
     static void Require(DialogueData d, StatType stat, float min, float max)

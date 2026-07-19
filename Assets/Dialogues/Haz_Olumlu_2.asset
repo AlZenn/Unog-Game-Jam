@@ -14,11 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 5
   lines:
-  - isLeftSide: 1
-    text: "\u0130tiraf edeyim... hi\xE7bir \u015Fey art\u0131k eskisi kadar tatmin
+  - text: "\u0130tiraf edeyim... hi\xE7bir \u015Fey art\u0131k eskisi kadar tatmin
       etmiyor."
-  - isLeftSide: 0
-    text: "Belki arad\u0131\u011F\u0131n \u015Fey d\u0131\u015Far\u0131da de\u011Fildir."
+  - text: "Belki arad\u0131\u011F\u0131n \u015Fey d\u0131\u015Far\u0131da de\u011Fildir."
   isNegative: 0
   requirements:
   - stat: 2

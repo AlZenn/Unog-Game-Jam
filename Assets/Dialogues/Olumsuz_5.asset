@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 0
   lines:
-  - isLeftSide: 1
-    text: "Hislerin bana hi\xE7 uymuyor."
+  - text: "Hislerin bana hi\xE7 uymuyor."
   isNegative: 1
   requirements: []
   answerA:

@@ -14,10 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 4
   lines:
-  - isLeftSide: 1
-    text: Ya bazen bu heyecan beni yoruyor...
-  - isLeftSide: 0
-    text: "Durup dinlenmek de maceran\u0131n par\xE7as\u0131."
+  - text: Ya bazen bu heyecan beni yoruyor...
+  - text: "Durup dinlenmek de maceran\u0131n par\xE7as\u0131."
   isNegative: 0
   requirements:
   - stat: 0

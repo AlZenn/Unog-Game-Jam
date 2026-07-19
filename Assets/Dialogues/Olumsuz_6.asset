@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 0
   lines:
-  - isLeftSide: 1
-    text: "Sen... hay\u0131r. \u015Eimdi olmaz."
+  - text: "Sen... hay\u0131r. \u015Eimdi olmaz."
   isNegative: 1
   requirements: []
   answerA:

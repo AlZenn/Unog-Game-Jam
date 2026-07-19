@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 4
   lines:
-  - isLeftSide: 1
-    text: "Bug\xFCn her \u015Fey olabilir! Hissediyor musun?!"
-  - isLeftSide: 0
-    text: "Enerjin bula\u015F\u0131c\u0131, itiraf edeyim."
-  - isLeftSide: 1
-    text: "\u0130\u015Fte b\xF6yle biriyle konu\u015Fmak istiyordum!"
+  - text: "Bug\xFCn her \u015Fey olabilir! Hissediyor musun?!"
+  - text: "Enerjin bula\u015F\u0131c\u0131, itiraf edeyim."
+  - text: "\u0130\u015Fte b\xF6yle biriyle konu\u015Fmak istiyordum!"
   isNegative: 0
   requirements:
   - stat: 0

@@ -14,12 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 6
   lines:
-  - isLeftSide: 1
-    text: "Sende bir \u015Fey var... Bana ne kazand\u0131rabilirsin?"
-  - isLeftSide: 0
-    text: "Her \u015Feyin bir bedeli olmak zorunda m\u0131?"
-  - isLeftSide: 1
-    text: "Heh... Pazarl\u0131k etmeyi biliyorsun. Ho\u015Fuma gitti."
+  - text: "Sende bir \u015Fey var... Bana ne kazand\u0131rabilirsin?"
+  - text: "Her \u015Feyin bir bedeli olmak zorunda m\u0131?"
+  - text: "Heh... Pazarl\u0131k etmeyi biliyorsun. Ho\u015Fuma gitti."
   isNegative: 0
   requirements:
   - stat: 2

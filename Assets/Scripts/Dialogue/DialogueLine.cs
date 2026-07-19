@@ -14,14 +14,12 @@ public enum SpeakerCharacter
     Acgozlu
 }
 
-// Tek bir diyalog satırı. Portre referansı YOKTUR:
-// sol = diyaloğun karakterinin portresi, sağ = ana karakterin portresi
-// (sprite'lar PortraitManager'dan gelir).
+// Tek bir diyalog satırı. Portre referansı YOKTUR: portre her zaman solda,
+// diyaloğun karakterine (olumsuzlarda tıklanan karaktere) göre
+// PortraitManager'dan çözülür.
 [Serializable]
 public class DialogueLine
 {
-    [Tooltip("Açık: karakterin portresi solda. Kapalı: ana karakterin portresi sağda.")]
-    public bool isLeftSide = true;
     [TextArea(2, 5)] public string text;
 }
 

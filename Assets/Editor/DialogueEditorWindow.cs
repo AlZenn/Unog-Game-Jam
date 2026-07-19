@@ -124,7 +124,7 @@ public class DialogueEditorWindow : EditorWindow
         }
 
         EditorGUILayout.PropertyField(serialized.FindProperty("lines"),
-            new GUIContent("Satırlar (sol=karakter / sağ=ana karakter)"), true);
+            new GUIContent("Satırlar (portre hep solda, karakterden gelir)"), true);
 
         var isNegative = serialized.FindProperty("isNegative").boolValue;
         if (!isNegative)

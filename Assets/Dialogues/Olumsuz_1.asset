@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueData
   speaker: 0
   lines:
-  - isLeftSide: 1
-    text: "Seninle konu\u015Facak havamda de\u011Filim."
+  - text: "Seninle konu\u015Facak havamda de\u011Filim."
   isNegative: 1
   requirements: []
   answerA:

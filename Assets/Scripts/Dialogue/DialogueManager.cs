@@ -31,7 +31,6 @@ public class DialogueManager : MonoBehaviour
     Vector2 panelShownPos;
     DialogueAudio audioFx;
     Sprite lastPortrait;
-    bool lastSide;
 
     void Awake()
     {
@@ -61,17 +60,9 @@ public class DialogueManager : MonoBehaviour
         lastPortrait = null;
         dialogueText.text = "";
 
-        // Önceki diyaloğun fotoğrafı panel girerken görünmesin: ilk satırın
-        // portresi slide başlamadan ayarlanır (pop animasyonuyla birlikte gelir).
-        if (data.lines.Count > 0)
-        {
-            ShowPortrait(data.lines[0], data, source);
-        }
-        else
-        {
-            portraitLeft.gameObject.SetActive(false);
-            portraitRight.gameObject.SetActive(false);
-        }
+        // Önceki diyaloğun fotoğrafı panel girerken görünmesin: portre slide
+        // başlamadan ayarlanır (pop animasyonuyla birlikte gelir).
+        ShowPortrait(data, source);
 
         yield return SlidePanel(true);
 
@@ -84,7 +75,6 @@ public class DialogueManager : MonoBehaviour
 
         foreach (var line in data.lines)
         {
-            ShowPortrait(line, data, source);
             yield return TypewriterEffect.Play(dialogueText, line.text, gm.letterDelay, onLetter);
             // Oyuncu okuyabilsin diye bekleme (GameManager'dan ayarlanır).
             yield return new WaitForSeconds(gm.sentenceWaitTime);
@@ -173,38 +163,33 @@ public class DialogueManager : MonoBehaviour
         target.localScale = Vector3.one;
     }
 
-    // Sol = diyaloğun karakterinin portresi, sağ = ana karakterin portresi.
+    // Portre her zaman solda: diyaloğun karakterinin portresi gösterilir.
     // Olumsuz diyaloglarda tıklanan karakterin (source) portresi kullanılır —
-    // asset'te atamaya gerek yoktur.
-    void ShowPortrait(DialogueLine line, DialogueData data, ClickableCharacter source)
+    // asset'te atamaya gerek yoktur. Sağ portre kullanılmaz.
+    void ShowPortrait(DialogueData data, ClickableCharacter source)
     {
-        Sprite sprite = ResolvePortrait(line, data, source);
-        bool hasPortrait = sprite != null;
+        portraitRight.gameObject.SetActive(false);
 
-        portraitLeft.gameObject.SetActive(hasPortrait && line.isLeftSide);
-        portraitRight.gameObject.SetActive(hasPortrait && !line.isLeftSide);
+        Sprite sprite = ResolvePortrait(data, source);
+        bool hasPortrait = sprite != null;
+        portraitLeft.gameObject.SetActive(hasPortrait);
         if (!hasPortrait)
         {
             lastPortrait = null;
             return;
         }
 
-        var img = line.isLeftSide ? portraitLeft : portraitRight;
-        img.sprite = sprite;
-        if (sprite != lastPortrait || line.isLeftSide != lastSide)
-            StartCoroutine(PortraitPop(img));
+        portraitLeft.sprite = sprite;
+        if (sprite != lastPortrait)
+            StartCoroutine(PortraitPop(portraitLeft));
         lastPortrait = sprite;
-        lastSide = line.isLeftSide;
     }
 
-    Sprite ResolvePortrait(DialogueLine line, DialogueData data, ClickableCharacter source)
+    Sprite ResolvePortrait(DialogueData data, ClickableCharacter source)
     {
         var pm = PortraitManager.Instance;
         if (pm == null) return null;
 
-        if (!line.isLeftSide) return pm.mainCharacterSprite;
-
-        // Sol taraf: olumsuzlarda tıklanan karakter, diğerlerinde asset'teki speaker.
         var speaker = data.isNegative && source != null ? source.characterId : data.speaker;
         return pm.GetPortrait(speaker);
     }
