@@ -224,17 +224,67 @@ public static class SceneSetupTool
         };
     }
 
+    // Oyun UI'ı Screen Space - Camera: CRT bükülmesi ve post-process UI'a da uygulanır.
+    // Sorting: dünya 0 < toz 5 < oyun UI 10 < menü 50 < firefly 60 < menü fade 100.
+    const int GameCanvasSortOrder = 10;
+
     static Canvas CreateCanvas()
     {
         var go = new GameObject("Canvas");
         var canvas = go.AddComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+        canvas.renderMode = RenderMode.ScreenSpaceCamera;
+        canvas.worldCamera = Camera.main;
+        canvas.planeDistance = 10f;
+        canvas.sortingOrder = GameCanvasSortOrder;
         var scaler = go.AddComponent<CanvasScaler>();
         scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1920f, 1080f);
         scaler.matchWidthOrHeight = 0.5f;
         go.AddComponent<GraphicRaycaster>();
         return canvas;
+    }
+
+    // Mevcut sahnedeki oyun canvas'ını (menü canvas'ı DEĞİL) CRT'ye dahil eder.
+    [MenuItem("Tools/UnoG/Oyun UI'ını CRT'ye Dahil Et", priority = 22)]
+    public static void ConvertGameCanvasToCameraSpace()
+    {
+        var cam = Camera.main;
+        if (cam == null)
+        {
+            Debug.LogError("UnoG: Main Camera bulunamadı.");
+            return;
+        }
+
+        Canvas gameCanvas = null;
+        foreach (var canvas in Object.FindObjectsByType<Canvas>(
+            UnityEngine.FindObjectsInactive.Include, FindObjectsSortMode.None))
+        {
+            if (canvas.transform.parent != null) continue; // nested canvas'lar (MenuFade vb.)
+            if (canvas.GetComponent<MainMenuController>() != null) continue; // menü canvas'ı
+            gameCanvas = canvas;
+            break;
+        }
+
+        if (gameCanvas == null)
+        {
+            Debug.LogError("UnoG: Oyun canvas'ı bulunamadı.");
+            return;
+        }
+        if (gameCanvas.renderMode == RenderMode.ScreenSpaceCamera)
+        {
+            Debug.Log("UnoG: Oyun canvas'ı zaten Screen Space - Camera modunda.");
+            return;
+        }
+
+        gameCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        gameCanvas.worldCamera = cam;
+        gameCanvas.planeDistance = 10f;
+        gameCanvas.sortingOrder = GameCanvasSortOrder;
+
+        EditorUtility.SetDirty(gameCanvas.gameObject);
+        UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(gameCanvas.gameObject.scene);
+        Debug.Log("UnoG: Oyun UI'ı Screen Space - Camera'ya çevrildi (order " +
+            GameCanvasSortOrder + ") — CRT bükülmesi artık UI'a da uygulanacak.");
     }
 
     static void CreateEventSystem()
