@@ -29,21 +29,6 @@ MonoBehaviour:
     _scale: 50
     _velocity: {x: 0, y: 0}
   _shader: {fileID: 4800000, guid: 9a902e6d68fe8344890c5926c684e820, type: 3}
---- !u!114 &-1243916134980043010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba0fc6722d757db479b7455fb79f9297, type: 3}
-  m_Name: CRT Effect
-  m_EditorClassIdentifier: Assembly-CSharp::BrewedInk.CRT.URPCRTRendererFeature
-  m_Active: 1
-  crtMaterial: {fileID: 2100000, guid: 5b2881dae5b193848b63bc48e2814ac5, type: 2}
-  renderPassEvent: 600
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +54,6 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 2800000, guid: 24ec0e140fb444a44ab96ee80844e18e, type: 3}
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
-  - {fileID: -1243916134980043010}
   - {fileID: -3991764981419178366}
   m_RendererFeatureMap: 9a48ffffffffffff2041ffffffffffff223cffffffffffffae34ffffffffffff4431ffffffffffff0030ffffffffffffb22effffffffffff7c2dffffffffffff462cffffffffffffe612ffffffffffff7611ffffffffffff8286aa0fe6669ac8
   m_UseNativeRenderPass: 0
