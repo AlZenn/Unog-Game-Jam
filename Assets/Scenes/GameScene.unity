@@ -4246,15 +4246,15 @@ MonoBehaviour:
   - character: 1
     portrait: {fileID: -5907354752065839848, guid: 03476d3699efe7041a8e4ef8349df848, type: 3}
   - character: 2
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 062bc412c0522814499031add70b7b04, type: 3}
   - character: 3
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: 4d0bdd9280cb255449bd117d381c28d9, type: 3}
   - character: 4
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: b32f3c6ccad7761458ce9136df9af3d7, type: 3}
   - character: 5
     portrait: {fileID: 21300000, guid: 388dd6ede078a68499e3b721ff8ecf01, type: 3}
   - character: 6
-    portrait: {fileID: 0}
+    portrait: {fileID: 21300000, guid: ae89db7572731ab428dc9e15ac3e8a6c, type: 3}
 --- !u!1 &1049055621
 GameObject:
   m_ObjectHideFlags: 0
